@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | The Citizen's Record</title>
+<meta name="description" content="Contact The Citizens Record with story tips, corrections, or questions.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-row">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.svg" alt="">
+      <span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="primary">
+      <a href="index.html">Home</a>
+      <a href="updates.html">Daily Log</a>
+      <a href="learn.html">Learn</a>
+      <a href="learn.html">Learn</a>
+      <a href="toolkit.html">Citizen Toolkit</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="updates.html" class="nav-cta">Daily Log</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">Contact</div>
+    <h1>Get in Touch</h1>
+    <p>Story tips, corrections, source documents, or general questions — this goes directly to the editor. There is no comment system or public account area on this site by design.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container contact-grid">
+    <div>
+      <form class="contact-form" id="contact-form">
+        <label for="c-name">Name</label>
+        <input id="c-name" name="name" type="text" required>
+
+        <label for="c-email">Email</label>
+        <input id="c-email" name="email" type="email" required>
+
+        <label for="c-topic">Topic</label>
+        <select id="c-topic" name="topic">
+          <option>Story tip / lead</option>
+          <option>Correction</option>
+          <option>Source document to review</option>
+          <option>General question</option>
+          <option>Other</option>
+        </select>
+
+        <label for="c-message">Message</label>
+        <textarea id="c-message" name="message" required></textarea>
+
+        <button class="btn" type="submit" style="margin-top:22px;">Send Message</button>
+        <p class="form-note" id="contact-note">This opens your email client with the message pre-filled — nothing is stored or posted on this site.</p>
+      </form>
+    </div>
+    <div>
+      <span class="eyebrow">Follow the Work</span>
+      <h2 style="font-size:22px;">Daily Updates &amp; Social</h2>
+      <p>New investigations, tracked bills, and short field notes are posted to the <a href="updates.html" style="border-bottom:1px solid var(--rule-light);">Daily Log</a> as they happen, and cross-posted to social media below.</p>
+      <div class="social-row" style="margin-top:16px;">
+        <a href="https://www.youtube.com/@14ss88thomascallen" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
+        <a href="https://x.com/tommycallen16" target="_blank" rel="noopener" aria-label="X / Twitter">𝕏</a>
+        <a href="https://www.facebook.com/TheRealThomasCAllen" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+      </div>
+      <p class="small" style="margin-top:26px;">Note for the editor: replace the <code>mailto:</code> address in this page's script, and the <code>href="#"</code> placeholders above, with your real address and social links.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('c-name').value;
+  const email = document.getElementById('c-email').value;
+  const topic = document.getElementById('c-topic').value;
+  const message = document.getElementById('c-message').value;
+  const subject = encodeURIComponent('[Citizen\'s Record] ' + topic);
+  const body = encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + message);
+  // EDITOR: replace the address below with your real inbox
+  window.location.href = 'mailto:thomascallen16@gmail.com?subject=' + subject + '&body=' + body;
+});
+</script>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="brand" style="margin-bottom:14px;">
+        <img src="assets/logo.svg" alt="" style="width:30px;height:30px;">
+        <span class="brand-text">The Citizen's Record</span>
+      </div>
+      <p class="small" style="max-width:280px;">Civic education through primary sources — constitutional rights, legislation, court decisions, and public records, explained plainly.</p>
+      <div class="social-row">
+        <a href="https://www.youtube.com/@14ss88thomascallen" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
+        <a href="https://x.com/tommycallen16" target="_blank" rel="noopener" aria-label="X / Twitter">𝕏</a>
+        <a href="https://www.facebook.com/TheRealThomasCAllen" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+      </div>
+    </div>
+    <div>
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="updates.html">Daily Log</a></li>
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="toolkit.html">Citizen Toolkit</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>About</h5>
+      <ul>
+        <li><a href="about.html#mission">Mission</a></li>
+        <li><a href="about.html#standards">Editorial Standards</a></li>
+        <li><a href="about.html#factchecking">Fact-Checking Policy</a></li>
+        <li><a href="about.html#sources">Sources Policy</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="updates.html">Daily Log</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 The Citizen's Record. Educational use — not legal advice.</span>
+    <span>Independent · Nonpartisan · Primary sources only</span>
+  </div>
+</footer>
+
+<script src="data/posts.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
