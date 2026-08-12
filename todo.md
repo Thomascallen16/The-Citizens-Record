@@ -1,0 +1,8 @@
+- [x] Standardize every public-facing instance of the publication name as "The Citizen's Record" using a straight apostrophe.
+- [x] Remove all ledger terminology and financial/accounting visual associations; replace them with civic record-room, source file, and public-document cues.
+- [x] Add dignified, nonpartisan civic-heritage cues and high-value portals to rights, legal change, and current official records without flag imagery or party framing.
+- [x] Add clear educational-use and no-legal-advice disclaimer language in the primary content flow and footer.
+- [x] Embed the “Evidence Before Opinion” charter, mission statement, and investigator-of-information principle in the primary website experience.
+- [x] Reframe field-guide resources around a consistent civic inquiry method: what happened, original source, system context, questions to ask, and independent verification.
+- [x] Add a structured Citizen Toolkit that teaches document finding, docket reading, public-record requests, following public money, and claim verification through direct official-resource pathways.
+- [x] Integrate the guiding principle “Do not create followers of information. Create investigators of information.” without crowding the homepage’s core message.
