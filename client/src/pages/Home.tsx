@@ -509,9 +509,9 @@ export default function Home() {
 
         <section id="contact" className="contact-section">
           <div className="page-frame contact-layout">
-            <div className="contact-copy"><p className="record-label"><span /> Keep in touch</p><h2>Have a source, a correction, or a question?</h2><p>Open your email app to contact the editor. Please do not send sensitive or confidential material through ordinary email.</p></div>
+            <div className="contact-copy"><p className="record-label"><span /> Keep in touch</p><h2>Have a source, a correction, or a question?</h2><p>Contact the editorial desk at <strong>thecitizensrecord@proton.me</strong>. Please do not send sensitive or confidential material through ordinary email.</p></div>
             <div className="contact-actions">
-              <a className="primary-link dark" href="mailto:thomascallen16@gmail.com?subject=The%20Citizen%27s%20Record%20inquiry"><Mail size={17} /> Open email app</a>
+              <a className="primary-link dark" href="mailto:thecitizensrecord@proton.me?subject=The%20Citizen%27s%20Record%20inquiry"><Mail size={17} /> Email the editorial desk</a>
               <p>Newsletter: <strong>coming soon</strong>. We will not collect email addresses until a real subscription service and privacy notice are in place.</p>
             </div>
           </div>
