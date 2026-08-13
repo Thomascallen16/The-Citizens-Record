@@ -16,3 +16,7 @@
 - [x] Replace all public contact mailto links and contact copy with thecitizensrecord@proton.me.
 - [x] Remove all social-media links until the official YouTube channel link is provided.
 - [x] Add the approved Public Email Policy to the public contact section, including response expectations, correction guidance, legal boundary, and secure-email caution.
+- [x] Split the public civic library into real Start Here, Official Portals, The Record, Find Resources, Toolkit, Learn, and Contact routes while preserving the existing visual identity and content.
+- [x] Add individual article, guide, and toolkit detail routes with source links, related learning paths, and back navigation.
+- [x] Verify representative direct-route refresh and browser history behavior; confirm the mobile menu exposes all seven primary routes and routes to the dedicated Contact page with active-route support.
+- [x] Re-test the dedicated resource directory’s keyword, category, jurisdiction, and no-results behavior after the multi-page refactor.

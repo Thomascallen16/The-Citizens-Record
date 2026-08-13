@@ -1,0 +1,7 @@
+import { ArrowRight } from "lucide-react";
+import { Link } from "wouter";
+import { PageHeading, PublicLayout } from "@/components/PublicLayout";
+
+export default function AboutPage() {
+  return <PublicLayout><PageHeading eyebrow="About" title="Evidence Before Opinion." intro="The Citizen's Record provides civic education through primary sources — constitutional rights, legislation, court decisions, and public records — explained plainly so citizens can examine the evidence themselves." /><section className="library-section"><div className="page-frame about-layout"><div><p className="record-label"><span /> Editorial charter</p><h2>Do not create followers of information. Create investigators of information.</h2></div><div className="about-copy"><p>We do not tell people what to think, who to support, or what conclusion to reach. We explain the process, show the source, teach the method, and allow the citizen to decide.</p><p>Every topic begins with the same questions: What happened? What is the original source? How does the system work? What should citizens ask? Where can the information be verified?</p><p>The Citizen's Record is an independent civic-education platform. It is not a law firm, a legal-help service, or a substitute for professional advice about an individual matter.</p><Link className="underlined-link" href="/contact">Read the Public Email Policy <ArrowRight size={16} /></Link></div></div></section></PublicLayout>;
+}
