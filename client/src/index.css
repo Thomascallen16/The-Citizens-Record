@@ -244,6 +244,13 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--vermilion); out
 .primary-link.dark:hover { background: #25313b; }
 .contact-actions p { margin: 17px 0 0; color: var(--soft-ink); font-size: 11px; line-height: 1.7; }
 .contact-actions strong { color: var(--moss); }
+.email-policy { display: grid; grid-template-columns: minmax(200px, .42fr) minmax(0, 1fr); gap: 64px; margin-top: 76px; border-top: 1px solid var(--ink); padding-top: 26px; }
+.email-policy-label { display: flex; flex-direction: column; gap: 14px; color: var(--vermilion); font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .1em; }
+.email-policy-label i { display: block; width: 46px; height: 1px; background: currentColor; }
+.email-policy-body h3 { max-width: 600px; margin: 0; font-family: "DM Serif Display", Georgia, serif; font-size: clamp(29px, 3vw, 43px); font-weight: 400; letter-spacing: -.04em; line-height: 1.05; }
+.email-policy-copy { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 42px; max-width: 850px; margin-top: 29px; }
+.email-policy-copy p { margin: 0; color: var(--soft-ink); font-size: 12px; line-height: 1.8; }
+.email-policy-copy strong { color: var(--ink); }
 
 .site-footer { background: var(--ink-deep); color: #d9dcd5; }
 .footer-main { display: flex; justify-content: space-between; gap: 40px; padding: 49px 0 42px; }
@@ -292,6 +299,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--vermilion); out
   .toolkit-grid { grid-template-columns: repeat(3, 1fr); }
   .standards-visual, .standards-visual img { min-height: 440px; height: 440px; }
   .contact-actions { border-top: 1px solid var(--paper-line); border-left: 0; padding: 28px 0 0; }
+  .email-policy { grid-template-columns: 150px minmax(0, 1fr); gap: 28px; }
 }
 
 @media (max-width: 640px) {
@@ -354,6 +362,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--vermilion); out
   .featured-guide-copy { left: 23px; right: 23px; bottom: 25px; }
   .guide-list h3 { font-size: 22px; }
   .corrections-section, .contact-section { padding: 78px 0; }
+  .email-policy { grid-template-columns: 1fr; gap: 22px; margin-top: 54px; }
+  .email-policy-copy { grid-template-columns: 1fr; gap: 18px; }
   .footer-main, .footer-bottom { align-items: flex-start; flex-direction: column; }
   .footer-main { gap: 31px; }
   .footer-links { flex-wrap: wrap; gap: 15px 22px; }

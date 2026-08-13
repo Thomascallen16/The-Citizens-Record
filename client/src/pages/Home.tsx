@@ -508,12 +508,26 @@ export default function Home() {
         </section>
 
         <section id="contact" className="contact-section">
-          <div className="page-frame contact-layout">
-            <div className="contact-copy"><p className="record-label"><span /> Keep in touch</p><h2>Have a source, a correction, or a question?</h2><p>Contact the editorial desk at <strong>thecitizensrecord@proton.me</strong>. Please do not send sensitive or confidential material through ordinary email.</p></div>
-            <div className="contact-actions">
-              <a className="primary-link dark" href="mailto:thecitizensrecord@proton.me?subject=The%20Citizen%27s%20Record%20inquiry"><Mail size={17} /> Email the editorial desk</a>
-              <p>Newsletter: <strong>coming soon</strong>. We will not collect email addresses until a real subscription service and privacy notice are in place.</p>
+          <div className="page-frame">
+            <div className="contact-layout">
+              <div className="contact-copy"><p className="record-label"><span /> Keep in touch</p><h2>Have a source, a correction, or a question?</h2><p>Contact the editorial desk at <strong>thecitizensrecord@proton.me</strong>. Please do not send sensitive or confidential material through ordinary email.</p></div>
+              <div className="contact-actions">
+                <a className="primary-link dark" href="mailto:thecitizensrecord@proton.me?subject=The%20Citizen%27s%20Record%20inquiry"><Mail size={17} /> Email the editorial desk</a>
+                <p>Newsletter: <strong>coming soon</strong>. We will not collect email addresses until a real subscription service and privacy notice are in place.</p>
+              </div>
             </div>
+            <section className="email-policy" aria-labelledby="email-policy-title">
+              <div className="email-policy-label"><span>PUBLIC EMAIL POLICY</span><i aria-hidden="true" /></div>
+              <div className="email-policy-body">
+                <h3 id="email-policy-title">How we handle messages to the record.</h3>
+                <div className="email-policy-copy">
+                  <p>We welcome questions, corrections, source tips, and information relevant to the public record.</p>
+                  <p>We read every message we receive, but we cannot guarantee a response to every inquiry. Messages involving active investigations, active legal matters, or sensitive information may require additional time to review. We are not acting as legal counsel or a lawyer.</p>
+                  <p><strong>Please do not send confidential personal information, passwords, financial information, or anything you would not want transmitted by email.</strong> Email is not a secure channel for sensitive material.</p>
+                  <p>If you believe we have published an error, please tell us what is incorrect and, whenever possible, provide the primary source supporting the correction. Verified corrections will be made to the record.</p>
+                </div>
+              </div>
+            </section>
           </div>
         </section>
       </main>

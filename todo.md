@@ -15,3 +15,4 @@
 - [x] Verify that the resource finder is accessible, responsive, and returns clear no-results feedback.
 - [x] Replace all public contact mailto links and contact copy with thecitizensrecord@proton.me.
 - [x] Remove all social-media links until the official YouTube channel link is provided.
+- [x] Add the approved Public Email Policy to the public contact section, including response expectations, correction guidance, legal boundary, and secure-email caution.
