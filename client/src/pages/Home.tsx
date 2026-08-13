@@ -3,6 +3,7 @@
  * mineral paper, Record Vermilion, visible source status, and restrained motion.
  */
 import { useEffect, useState } from "react";
+import { trpc } from "@/lib/trpc";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -115,6 +116,10 @@ const citizenTools = [
 export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
   const [filter, setFilter] = useState("All records");
+  const publishedResources = trpc.content.listPublished.useQuery(undefined, {
+    retry: false,
+    refetchOnWindowFocus: false,
+  });
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -213,7 +218,7 @@ export default function Home() {
               <p className="record-label on-dark"><span /> Volume 01 · a shared public record</p>
               <h1>Read the document.<br /><em>Then decide</em> what it means.</h1>
               <p className="hero-lede">
-                The Citizen's Record is an independent civic reading room for people who want to see the public record before they hear the argument.
+                The Citizen's Record. Find evidence before opinion. Understand the process and system. Find the source. Follow the record.
               </p>
               <div className="hero-actions">
                 <a className="primary-link" href="#inquiry">Start with the evidence <ArrowRight size={17} /></a>
@@ -335,6 +340,22 @@ export default function Home() {
               <FileSearch size={20} />
               <p><strong>Publication boundary.</strong> If we have not independently checked the identifying details against the original record, it does not appear here as current fact.</p>
             </div>
+
+            {publishedResources.data?.length ? (
+              <div className="published-shelf">
+                <div className="published-shelf-head"><p className="record-label"><span /> Newly published to the reading room</p><span>{publishedResources.data.length} resource{publishedResources.data.length === 1 ? "" : "s"}</span></div>
+                <div className="published-shelf-grid">
+                  {publishedResources.data.slice(0, 3).map(resource => (
+                    <article key={resource.id}>
+                      <p>{resource.kind.replace("_", " ")}</p>
+                      <h3>{resource.title}</h3>
+                      <span>{resource.summary}</span>
+                      {resource.sourceUrl && <a href={resource.sourceUrl} target="_blank" rel="noreferrer">Open original source <ExternalLink size={14} /></a>}
+                    </article>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
         </section>
 
@@ -438,7 +459,7 @@ export default function Home() {
       <footer className="site-footer">
         <div className="page-frame footer-main">
           <div className="footer-brand"><img src="/manus-storage/citizens-record-aperture_3f887e95.png" alt="" /><div><p>The Citizen's Record</p><span>Independent · source-first · civic education</span></div></div>
-          <div className="footer-links"><a href="#portals">Official portals</a><a href="#record">The record</a><a href="#standards">Standards</a><a href="#learn">Field guides</a><a href="#contact">Contact</a></div>
+          <div className="footer-links"><a href="#portals">Official portals</a><a href="#record">The record</a><a href="#standards">Standards</a><a href="#learn">Field guides</a><a href="#contact">Contact</a><a href="/manage">Manage</a></div>
         </div>
         <div className="page-frame footer-bottom"><span>© 2026 The Citizen's Record</span><span>Educational reference only · Not legal advice or legal representation</span></div>
       </footer>
