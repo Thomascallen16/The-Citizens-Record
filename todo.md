@@ -8,6 +8,6 @@
 - [x] Integrate the guiding principle “Do not create followers of information. Create investigators of information.” without crowding the homepage’s core message.
 - [x] Restore full-stack dependencies and confirm the upgraded application builds cleanly.
 - [x] Generate and apply the civic-content database migration once managed database connectivity is restored.
-- [ ] Verify that authenticated administrators can persist and publish civic resources while public visitors can read published resources only.
-- [ ] Validate that published database resources render on the public site while drafts remain private to the management workspace.
+- [x] Verify that authenticated administrators can persist and publish civic resources while public visitors can read published resources only.
+- [x] Validate that published database resources render on the public site while drafts remain private to the management workspace.
 - [x] Verify the revised hero statement and preserve its source-first civic-education meaning in the saved website version.
