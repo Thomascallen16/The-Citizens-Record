@@ -2,7 +2,7 @@
  * Public Record design: an independent civic reading room built from midnight ink,
  * mineral paper, Record Vermilion, visible source status, and restrained motion.
  */
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { trpc } from "@/lib/trpc";
 import {
   ArrowRight,
@@ -15,6 +15,7 @@ import {
   Landmark,
   Mail,
   Menu,
+  Search,
   Scale,
   ShieldCheck,
   X,
@@ -57,10 +58,23 @@ const navItems = [
   { label: "Start here", href: "#inquiry" },
   { label: "Official portals", href: "#portals" },
   { label: "The Record", href: "#record" },
+  { label: "Find resources", href: "#resource-finder" },
   { label: "Toolkit", href: "#toolkit" },
   { label: "Learn", href: "#learn" },
   { label: "Contact", href: "#contact" },
 ];
+
+function displayResourceKind(kind: string) {
+  return kind.replace("_", " ").replace(/\b\w/g, character => character.toUpperCase());
+}
+
+function resourceCategory(resource: { category: string | null; kind: string }) {
+  return resource.category?.trim() || displayResourceKind(resource.kind);
+}
+
+function resourceJurisdiction(resource: { jurisdiction: string | null }) {
+  return resource.jurisdiction?.trim() || "General";
+}
 
 const publicPortals = [
   {
@@ -116,6 +130,9 @@ const citizenTools = [
 export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
   const [filter, setFilter] = useState("All records");
+  const [resourceSearch, setResourceSearch] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("All categories");
+  const [jurisdictionFilter, setJurisdictionFilter] = useState("All jurisdictions");
   const publishedResources = trpc.content.listPublished.useQuery(undefined, {
     retry: false,
     refetchOnWindowFocus: false,
@@ -133,6 +150,45 @@ export default function Home() {
     filter === "All records"
       ? sourceRecords
       : sourceRecords.filter((record) => record.type === filter);
+
+  const resourceCategories = useMemo(() => {
+    const values = new Set((publishedResources.data ?? []).map(resourceCategory));
+    return Array.from(values).sort((left, right) => left.localeCompare(right));
+  }, [publishedResources.data]);
+
+  const resourceJurisdictions = useMemo(() => {
+    const values = new Set((publishedResources.data ?? []).map(resourceJurisdiction));
+    return Array.from(values).sort((left, right) => left.localeCompare(right));
+  }, [publishedResources.data]);
+
+  const matchingResources = useMemo(() => {
+    const query = resourceSearch.trim().toLowerCase();
+    return (publishedResources.data ?? []).filter(resource => {
+      const searchableText = [
+        resource.title,
+        resource.summary,
+        resource.sourceLabel,
+        resource.sourceUrl,
+        resourceCategory(resource),
+        resourceJurisdiction(resource),
+        displayResourceKind(resource.kind),
+      ].filter(Boolean).join(" ").toLowerCase();
+
+      return (
+        (!query || searchableText.includes(query)) &&
+        (categoryFilter === "All categories" || resourceCategory(resource) === categoryFilter) &&
+        (jurisdictionFilter === "All jurisdictions" || resourceJurisdiction(resource) === jurisdictionFilter)
+      );
+    });
+  }, [categoryFilter, jurisdictionFilter, publishedResources.data, resourceSearch]);
+
+  const filtersActive = Boolean(resourceSearch || categoryFilter !== "All categories" || jurisdictionFilter !== "All jurisdictions");
+
+  const clearResourceFilters = () => {
+    setResourceSearch("");
+    setCategoryFilter("All categories");
+    setJurisdictionFilter("All jurisdictions");
+  };
 
   return (
     <div className="site-shell">
@@ -341,21 +397,27 @@ export default function Home() {
               <p><strong>Publication boundary.</strong> If we have not independently checked the identifying details against the original record, it does not appear here as current fact.</p>
             </div>
 
-            {publishedResources.data?.length ? (
-              <div className="published-shelf">
-                <div className="published-shelf-head"><p className="record-label"><span /> Newly published to the reading room</p><span>{publishedResources.data.length} resource{publishedResources.data.length === 1 ? "" : "s"}</span></div>
-                <div className="published-shelf-grid">
-                  {publishedResources.data.slice(0, 3).map(resource => (
-                    <article key={resource.id}>
-                      <p>{resource.kind.replace("_", " ")}</p>
-                      <h3>{resource.title}</h3>
-                      <span>{resource.summary}</span>
-                      {resource.sourceUrl && <a href={resource.sourceUrl} target="_blank" rel="noreferrer">Open original source <ExternalLink size={14} /></a>}
-                    </article>
-                  ))}
-                </div>
-              </div>
-            ) : null}
+          </div>
+        </section>
+
+        <section id="resource-finder" className="resource-finder-section ruled-surface">
+          <div className="page-frame">
+            <div className="finder-heading">
+              <div><p className="record-label"><span /> Resource finder</p><h2>Find the record you need.</h2></div>
+              <p>Search the published civic field manual by a plain-language term, category, or jurisdiction. Each result leads back to its original source.</p>
+            </div>
+
+            <div className="finder-controls" aria-label="Filter published civic resources">
+              <label className="finder-search"><span className="finder-label">Search resources</span><Search size={18} aria-hidden="true" /><input type="search" value={resourceSearch} onChange={event => setResourceSearch(event.target.value)} placeholder="Try “Constitution”, “docket”, or “Federal”" /></label>
+              <label className="finder-select"><span>Category</span><select value={categoryFilter} onChange={event => setCategoryFilter(event.target.value)}><option>All categories</option>{resourceCategories.map(category => <option key={category}>{category}</option>)}</select></label>
+              <label className="finder-select"><span>Jurisdiction</span><select value={jurisdictionFilter} onChange={event => setJurisdictionFilter(event.target.value)}><option>All jurisdictions</option>{resourceJurisdictions.map(jurisdiction => <option key={jurisdiction}>{jurisdiction}</option>)}</select></label>
+              {filtersActive && <button type="button" className="finder-clear" onClick={clearResourceFilters}>Clear filters</button>}
+            </div>
+
+            <div className="finder-results" aria-live="polite">
+              <div className="finder-results-head"><span>{matchingResources.length} {matchingResources.length === 1 ? "resource" : "resources"} found</span><span>Published reading room</span></div>
+              {publishedResources.isLoading ? <div className="finder-empty"><Search size={22} /><p>Loading published resources…</p></div> : matchingResources.length ? <div className="finder-grid">{matchingResources.map(resource => <article className="finder-card" key={resource.id}><div className="finder-card-tags"><span>{resourceCategory(resource)}</span><span>{resourceJurisdiction(resource)}</span></div><p>{displayResourceKind(resource.kind)}</p><h3>{resource.title}</h3><span>{resource.summary}</span>{resource.sourceUrl && <a href={resource.sourceUrl} target="_blank" rel="noreferrer">Open original source <ExternalLink size={14} /></a>}</article>)}</div> : <div className="finder-empty"><FileSearch size={22} /><p>{filtersActive ? "No published resources match those filters. Try a broader search or clear the filters." : "No published resources are available yet. Check back as the reading room grows."}</p></div>}
+            </div>
           </div>
         </section>
 

@@ -12,6 +12,8 @@ type FormState = {
   summary: string;
   sourceUrl: string;
   sourceLabel: string;
+  category: string;
+  jurisdiction: string;
   status: "draft" | "published";
 };
 
@@ -22,6 +24,8 @@ const blankForm: FormState = {
   summary: "",
   sourceUrl: "",
   sourceLabel: "",
+  category: "",
+  jurisdiction: "",
   status: "draft",
 };
 
@@ -68,6 +72,8 @@ export default function ContentManager() {
       slug: form.slug || slugFromTitle(form.title),
       sourceUrl: form.sourceUrl || undefined,
       sourceLabel: form.sourceLabel || undefined,
+      category: form.category || undefined,
+      jurisdiction: form.jurisdiction || undefined,
     });
   };
 
@@ -97,6 +103,9 @@ export default function ContentManager() {
                   <label>Title<input value={form.title} onChange={event => { update("title", event.target.value); if (!form.slug) update("slug", slugFromTitle(event.target.value)); }} placeholder="e.g. Reading a court opinion" required /></label>
                   <label>Permanent slug<input value={form.slug} onChange={event => update("slug", event.target.value)} placeholder="reading-a-court-opinion" required /></label>
                   <div className="form-two"><label>Resource type<select value={form.kind} onChange={event => update("kind", event.target.value as FormState["kind"])}><option value="guide">Field guide</option><option value="tool">Toolkit tool</option><option value="portal">Official portal</option><option value="field_note">Field note</option><option value="case_update">Case update</option></select></label><label>Visibility<select value={form.status} onChange={event => update("status", event.target.value as FormState["status"])}><option value="draft">Draft</option><option value="published">Published</option></select></label></div>
+                  <div className="form-two"><label>Category<input value={form.category} onChange={event => update("category", event.target.value)} list="resource-category-options" placeholder="e.g. Civic foundations" /></label><label>Jurisdiction<input value={form.jurisdiction} onChange={event => update("jurisdiction", event.target.value)} list="resource-jurisdiction-options" placeholder="e.g. Federal" /></label></div>
+                  <datalist id="resource-category-options"><option value="Civic foundations" /><option value="Courts & case law" /><option value="Legislation" /><option value="Public records" /><option value="Public finance" /><option value="Civic participation" /></datalist>
+                  <datalist id="resource-jurisdiction-options"><option value="Federal" /><option value="State" /><option value="County" /><option value="Municipal" /><option value="Multi-jurisdiction" /></datalist>
                   <label>Plain-language summary<textarea value={form.summary} onChange={event => update("summary", event.target.value)} placeholder="Explain what the reader will learn and how they can verify it." rows={5} required /></label>
                   <label>Original source URL <input type="url" value={form.sourceUrl} onChange={event => update("sourceUrl", event.target.value)} placeholder="https://…" /></label>
                   <label>Source label <input value={form.sourceLabel} onChange={event => update("sourceLabel", event.target.value)} placeholder="e.g. Congress.gov" /></label>

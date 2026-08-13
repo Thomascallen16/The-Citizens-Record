@@ -11,3 +11,5 @@
 - [x] Verify that authenticated administrators can persist and publish civic resources while public visitors can read published resources only.
 - [x] Validate that published database resources render on the public site while drafts remain private to the management workspace.
 - [x] Verify the revised hero statement and preserve its source-first civic-education meaning in the saved website version.
+- [x] Add a published-resource finder with keyword search, searchable category controls, and jurisdiction filters.
+- [x] Verify that the resource finder is accessible, responsive, and returns clear no-results feedback.
