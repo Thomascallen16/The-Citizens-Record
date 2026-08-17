@@ -24,3 +24,5 @@
 - [x] Test the State legislation category filter and open the rendered Michigan, Colorado, and Pittsburgh official-source links from the public directory or detail pages.
 - [x] Confirm the rendered Colorado General Assembly source link opens its intended official state-legislature destination.
 - [x] Confirm the rendered Pittsburgh Municipal Record source link opens its intended official City of Pittsburgh destination.
+- [x] Replace the Michigan, Colorado, and Pittsburgh sample resources with one nationwide Congress.gov State Legislature Websites directory entry.
+- [x] Verify the nationwide directory appears publicly, routes to Congress.gov, and is discoverable through resource filtering.
