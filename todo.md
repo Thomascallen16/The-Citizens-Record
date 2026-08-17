@@ -20,3 +20,7 @@
 - [x] Add individual article, guide, and toolkit detail routes with source links, related learning paths, and back navigation.
 - [x] Verify representative direct-route refresh and browser history behavior; confirm the mobile menu exposes all seven primary routes and routes to the dedicated Contact page with active-route support.
 - [x] Re-test the dedicated resource directory’s keyword, category, jurisdiction, and no-results behavior after the multi-page refactor.
+- [x] Add clearly labeled sample State and Local jurisdiction resources that link to official government-maintained research systems.
+- [x] Test the State legislation category filter and open the rendered Michigan, Colorado, and Pittsburgh official-source links from the public directory or detail pages.
+- [x] Confirm the rendered Colorado General Assembly source link opens its intended official state-legislature destination.
+- [x] Confirm the rendered Pittsburgh Municipal Record source link opens its intended official City of Pittsburgh destination.
