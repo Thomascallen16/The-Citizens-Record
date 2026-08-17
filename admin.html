@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Draft Entry (Editor Only) | The Citizen's Record</title>
 <meta name="description" content="Private drafting tool for the daily log.">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="site-header">
   <div class="container nav-row">
     <a href="index.html" class="brand">
-      <img src="assets/logo.svg" alt="">
+      <img src="logo.svg" alt="">
       <span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span>
     </a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
@@ -33,7 +33,7 @@
   <div class="container">
     <div class="breadcrumb">Editor Only · Not Linked in Navigation</div>
     <h1>Draft a Daily Log Entry</h1>
-    <p>This page is not linked from anywhere on the public site and has no login — it's just a convenience form that formats a new entry for you. Fill it out, copy the generated code, and paste it as a new item at the top of the <code>CR_POSTS</code> array in <code>data/posts.js</code>. Then save and redeploy the site.</p>
+    <p>This page is not linked from anywhere on the public site and has no login — it's just a convenience form that formats a new entry for you. Fill it out, copy the generated code, and paste it as a new item at the top of the <code>CR_POSTS</code> array in <code>posts.js</code>. Then save and redeploy the site.</p>
   </div>
 </section>
 
@@ -68,7 +68,7 @@
         <button class="btn" type="button" id="generate-btn" style="margin-top:22px;">Generate Code</button>
       </form>
       <div>
-        <span class="eyebrow">Copy This Into data/posts.js</span>
+        <span class="eyebrow">Copy This Into posts.js</span>
         <textarea id="output" readonly style="width:100%;min-height:220px;font-family:'IBM Plex Mono',monospace;font-size:13px;padding:14px;border:1px solid var(--rule-light);background:#fff;"></textarea>
         <button class="btn ghost dark" id="copy-btn" type="button" style="margin-top:12px;">Copy to Clipboard</button>
       </div>
@@ -109,7 +109,7 @@ document.getElementById('copy-btn').addEventListener('click', function(){
   <div class="container footer-grid">
     <div>
       <div class="brand" style="margin-bottom:14px;">
-        <img src="assets/logo.svg" alt="" style="width:30px;height:30px;">
+        <img src="logo.svg" alt="" style="width:30px;height:30px;">
         <span class="brand-text">The Citizen's Record</span>
       </div>
       <p class="small" style="max-width:280px;">Civic education through primary sources — constitutional rights, legislation, court decisions, and public records, explained plainly.</p>
@@ -151,8 +151,8 @@ document.getElementById('copy-btn').addEventListener('click', function(){
   </div>
 </footer>
 
-<script src="data/posts.js"></script>
-<script src="js/main.js"></script>
+<script src="posts.js"></script>
+<script src="main.js"></script>
 
 </body>
 </html>
