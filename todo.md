@@ -26,3 +26,8 @@
 - [x] Confirm the rendered Pittsburgh Municipal Record source link opens its intended official City of Pittsburgh destination.
 - [x] Replace the Michigan, Colorado, and Pittsburgh sample resources with one nationwide Congress.gov State Legislature Websites directory entry.
 - [x] Verify the nationwide directory appears publicly, routes to Congress.gov, and is discoverable through resource filtering.
+- [x] Add a curated, free legal self-help resource collection with clear educational-use and no-legal-advice framing.
+- [x] Refine the public visual system with restrained dark-wood, leather, warm-gold, and subtle atmospheric-depth cues while preserving legibility and the existing civic-library character.
+- [x] Verify the new legal resources, resource filters, responsive visual presentation, and source links.
+- [x] Confirm every rendered legal self-help source link opens its intended official destination.
+- [x] Test the Nationwide jurisdiction and Legal self-help category filters together.

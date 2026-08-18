@@ -6,6 +6,10 @@
 :root {
   --ink: #111a25;
   --ink-deep: #081019;
+  --walnut: #241a16;
+  --walnut-deep: #17100e;
+  --leather: #4b2722;
+  --brass: #d8b57d;
   --paper: #f6f1e6;
   --paper-strong: #ede3d0;
   --paper-line: rgba(17, 26, 37, 0.14);
@@ -18,7 +22,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; min-width: 320px; background: var(--paper); color: var(--ink); font-family: "Manrope", sans-serif; }
+body { margin: 0; min-width: 320px; background: linear-gradient(115deg, rgba(102,71,44,.045), transparent 28%), var(--paper); color: var(--ink); font-family: "Manrope", sans-serif; }
 button, a { font: inherit; }
 button { cursor: pointer; }
 a { color: inherit; text-decoration: none; }
@@ -29,13 +33,15 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--vermilion); out
 .skip-link { position: fixed; left: 16px; top: -80px; z-index: 100; padding: 12px 16px; background: var(--vermilion); color: white; transition: top 160ms var(--ease-out); }
 .skip-link:focus { top: 16px; }
 
-.edition-strip { border-bottom: 1px solid rgba(246, 241, 230, 0.13); background: var(--ink-deep); color: #d3d7d4; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+.edition-strip { border-bottom: 1px solid rgba(246, 241, 230, 0.13); background: linear-gradient(105deg, rgba(23,16,14,.97), rgba(8,16,25,.99) 48%, rgba(46,29,20,.96)); color: #d3d7d4; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
 .edition-inner { min-height: 34px; display: flex; align-items: center; gap: 13px; }
 .edition-strip-divider { width: 3px; height: 3px; background: var(--vermilion); }
 .edition-strip a { margin-left: auto; display: inline-flex; gap: 6px; align-items: center; color: #f4ebda; }
 .edition-strip a:hover { color: #fff; }
 
-.site-header { position: relative; z-index: 20; background: var(--ink); color: var(--paper); border-bottom: 1px solid rgba(246, 241, 230, 0.13); }
+.site-header { position: relative; z-index: 20; background: linear-gradient(100deg, rgba(28,20,18,.99), rgba(17,26,37,.99) 49%, rgba(38,24,18,.99)); color: var(--paper); border-bottom: 1px solid rgba(216,181,125,.22); box-shadow: inset 0 -1px rgba(0,0,0,.24); }
+.site-header::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .3; background-image: repeating-linear-gradient(9deg, transparent 0 18px, rgba(216,181,125,.05) 19px 20px, transparent 21px 39px); mix-blend-mode: screen; }
+.header-inner { position: relative; z-index: 1; }
 .header-inner { min-height: 88px; display: flex; align-items: center; gap: 28px; }
 .brand { display: inline-flex; align-items: center; min-width: 0; gap: 12px; }
 .brand-mark { width: 37px; height: 37px; object-fit: contain; }
@@ -49,10 +55,11 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--vermilion); out
 .header-action { display: inline-flex; align-items: center; gap: 8px; border-left: 1px solid rgba(246, 241, 230, 0.18); padding-left: 24px; color: #f5e8cc; font-size: 12px; font-weight: 700; }
 .menu-toggle, .mobile-nav { display: none; }
 
-.hero-section { position: relative; min-height: 620px; display: flex; align-items: stretch; color: var(--paper); background: var(--ink-deep); }
+.hero-section { position: relative; min-height: 620px; display: flex; align-items: stretch; color: var(--paper); background: var(--walnut-deep); }
 .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.hero-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,16,25,0.98) 0%, rgba(8,16,25,0.9) 35%, rgba(8,16,25,0.3) 70%, rgba(8,16,25,0.22) 100%); }
-.hero-section::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .18; background-image: linear-gradient(rgba(246,241,230,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(246,241,230,.1) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(90deg, black, transparent 69%); }
+.hero-scrim { position: absolute; inset: 0; background: radial-gradient(circle at 79% 44%, rgba(201,155,83,.17), transparent 22%), linear-gradient(90deg, rgba(11,14,20,.985) 0%, rgba(15,18,24,.93) 42%, rgba(21,16,15,.48) 72%, rgba(19,13,11,.35) 100%); }
+.hero-section::before { content: ""; position: absolute; z-index: 0; inset: 0; pointer-events: none; opacity: .34; background: linear-gradient(110deg, transparent 0 46%, rgba(104,66,39,.1) 52%, transparent 60%), repeating-linear-gradient(10deg, transparent 0 31px, rgba(219,185,132,.045) 33px 34px, transparent 36px 63px); mix-blend-mode: screen; }
+.hero-section::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .16; background-image: linear-gradient(rgba(246,241,230,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(246,241,230,.1) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(90deg, black, transparent 69%); }
 .hero-layout { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) 290px; align-items: end; gap: 48px; padding-top: 84px; padding-bottom: 58px; }
 .hero-copy { max-width: 780px; }
 .record-label { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px; color: var(--vermilion); font-family: "IBM Plex Mono", monospace; font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
@@ -72,7 +79,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--vermilion); out
 .hero-note p { margin: 17px 0 22px; color: #e4e0d7; font-family: "DM Serif Display", Georgia, serif; font-size: 21px; line-height: 1.18; }
 .hero-note a { display: inline-flex; align-items: center; gap: 7px; color: white; font-size: 12px; font-weight: 700; }
 
-.ruled-surface { background-color: var(--paper); background-image: linear-gradient(var(--paper-line) 1px, transparent 1px); background-size: 100% 37px; }
+.ruled-surface { background-color: var(--paper); background-image: linear-gradient(var(--paper-line) 1px, transparent 1px), linear-gradient(105deg, rgba(112,75,43,.04), transparent 34%); background-size: 100% 37px, 100% 100%; }
 .statement-section { border-bottom: 1px solid var(--paper-line); padding: 124px 0 116px; }
 .statement-layout { display: grid; grid-template-columns: 130px minmax(0, 1fr) 126px; gap: 40px; }
 .rail-label { padding-top: 6px; color: var(--soft-ink); font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .1em; }
@@ -152,7 +159,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--vermilion); out
 .published-shelf-grid article > span { color: var(--soft-ink); font-size: 11px; line-height: 1.65; }
 .published-shelf-grid a { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 16px; color: var(--ink); font-size: 11px; font-weight: 700; }
 
-.resource-finder-section { padding: 112px 0; background: #ece2cf; border-top: 1px solid var(--paper-line); border-bottom: 1px solid var(--paper-line); }
+.resource-finder-section { position: relative; isolation: isolate; padding: 112px 0; background: linear-gradient(115deg, #ece2cf, #f3eadc 46%, #e7d9c5); border-top: 1px solid rgba(75,39,34,.18); border-bottom: 1px solid rgba(75,39,34,.18); }
+.resource-finder-section::before { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .35; pointer-events: none; background: repeating-linear-gradient(8deg, transparent 0 22px, rgba(88,57,33,.055) 23px 24px, transparent 25px 47px); }
 .finder-heading { display: flex; justify-content: space-between; gap: 48px; align-items: end; padding-bottom: 33px; border-bottom: 1px solid var(--paper-line); }
 .finder-heading h2 { margin: 0; font-family: "DM Serif Display", Georgia, serif; font-size: clamp(40px, 4.5vw, 66px); font-weight: 400; letter-spacing: -.05em; line-height: 1.02; }
 .finder-heading > p { max-width: 380px; margin: 0 0 4px; color: var(--soft-ink); font-size: 13px; line-height: 1.75; }
@@ -252,7 +260,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--vermilion); out
 .email-policy-copy p { margin: 0; color: var(--soft-ink); font-size: 12px; line-height: 1.8; }
 .email-policy-copy strong { color: var(--ink); }
 
-.site-footer { background: var(--ink-deep); color: #d9dcd5; }
+.site-footer { background: linear-gradient(105deg, #16100e, var(--ink-deep) 46%, #211611); color: #d9dcd5; }
 .footer-main { display: flex; justify-content: space-between; gap: 40px; padding: 49px 0 42px; }
 .footer-brand { display: flex; gap: 12px; align-items: center; }
 .footer-brand img { width: 39px; height: 39px; }

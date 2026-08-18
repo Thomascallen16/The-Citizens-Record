@@ -14,7 +14,7 @@ const pathways = [
 export default function Home() {
   return <PublicLayout>
     <section className="hero-section library-hero">
-      <img className="hero-image" src="/manus-storage/citizens-record-hero_3ad7f247.jpg" alt="A dimly lit archive reading room with public records arranged on a table" />
+      <img className="hero-image" src="/manus-storage/citizens-record-law-library-walnut_d8a97c91.jpg" alt="A quiet law-library reading room with a walnut desk and warm brass lamp" />
       <div className="hero-scrim" />
       <div className="page-frame hero-layout">
         <div className="hero-copy"><p className="record-label on-dark"><span /> Start here · a shared public record</p><h1>Read the document.<br /><em>Then decide</em> what it means.</h1><p className="hero-lede">The Citizen's Record helps you understand the system, find the source, and follow the record. It is a field guide for examining public life—not a feed telling you what to conclude.</p><div className="hero-actions"><Link className="primary-link" href="/learn">Start learning <ArrowRight size={17} /></Link><Link className="text-link on-dark" href="/record">Open the record <ArrowRight size={16} /></Link></div></div>
