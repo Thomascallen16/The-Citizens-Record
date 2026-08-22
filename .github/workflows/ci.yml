@@ -1,40 +1,31 @@
 name: Static Site CI
-
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
   group: static-site-ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   validate:
     name: Validate static civic-workbench site
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out source
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-
       - name: Verify repository whitespace
-        run: git diff --check HEAD^ HEAD
-
+        run: git show --check --format= HEAD
       - name: Validate static-site structure
         run: npm run validate
-
       - name: Run automated tests
         run: npm test
