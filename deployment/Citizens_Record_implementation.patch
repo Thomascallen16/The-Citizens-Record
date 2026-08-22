@@ -1,0 +1,855 @@
+From b9e22fff2401b648fe6921bb976fc197e2a25ea3 Mon Sep 17 00:00:00 2001
+From: Thomascallen16 <1.4638632e+08+Thomascallen16@users.noreply.github.com>
+Date: Mon, 17 Aug 2026 10:41:39 +0000
+Subject: [PATCH] Build evidence-workbench conversion experience
+
+---
+ about.html           |  10 +-
+ admin.html           |  14 +--
+ contact.html         |  10 +-
+ index.html           | 244 +++++++------------------------------------
+ learn.html           |  10 +-
+ main.js              |  37 +++++++
+ read-the-record.html |  10 +-
+ record-builder.html  |   8 ++
+ style.css            |  12 +++
+ the-record.html      |  10 +-
+ toolkit.html         | 164 ++---------------------------
+ updates.html         |  10 +-
+ 12 files changed, 138 insertions(+), 401 deletions(-)
+ create mode 100644 record-builder.html
+
+diff --git a/about.html b/about.html
+index 3ff2000..e100eb4 100644
+--- a/about.html
++++ b/about.html
+@@ -5,14 +5,14 @@
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>About — Mission & Editorial Standards | The Citizen's Record</title>
+ <meta name="description" content="Mission, editorial standards, fact-checking policy, and sources policy for The Citizens Record.">
+-<link rel="stylesheet" href="css/style.css">
++<link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+ 
+ <header class="site-header">
+   <div class="container nav-row">
+     <a href="index.html" class="brand">
+-      <img src="assets/logo.svg" alt="">
++      <img src="logo.svg" alt="">
+       <span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span>
+     </a>
+     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+@@ -66,7 +66,7 @@
+   <div class="container footer-grid">
+     <div>
+       <div class="brand" style="margin-bottom:14px;">
+-        <img src="assets/logo.svg" alt="" style="width:30px;height:30px;">
++        <img src="logo.svg" alt="" style="width:30px;height:30px;">
+         <span class="brand-text">The Citizen's Record</span>
+       </div>
+       <p class="small" style="max-width:280px;">Civic education through primary sources — constitutional rights, legislation, court decisions, and public records, explained plainly.</p>
+@@ -108,8 +108,8 @@
+   </div>
+ </footer>
+ 
+-<script src="data/posts.js"></script>
+-<script src="js/main.js"></script>
++<script src="posts.js"></script>
++<script src="main.js"></script>
+ 
+ </body>
+ </html>
+diff --git a/admin.html b/admin.html
+index 4ca2e73..e905bb1 100644
+--- a/admin.html
++++ b/admin.html
+@@ -5,14 +5,14 @@
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Draft Entry (Editor Only) | The Citizen's Record</title>
+ <meta name="description" content="Private drafting tool for the daily log.">
+-<link rel="stylesheet" href="css/style.css">
++<link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+ 
+ <header class="site-header">
+   <div class="container nav-row">
+     <a href="index.html" class="brand">
+-      <img src="assets/logo.svg" alt="">
++      <img src="logo.svg" alt="">
+       <span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span>
+     </a>
+     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+@@ -33,7 +33,7 @@
+   <div class="container">
+     <div class="breadcrumb">Editor Only · Not Linked in Navigation</div>
+     <h1>Draft a Daily Log Entry</h1>
+-    <p>This page is not linked from anywhere on the public site and has no login — it's just a convenience form that formats a new entry for you. Fill it out, copy the generated code, and paste it as a new item at the top of the <code>CR_POSTS</code> array in <code>data/posts.js</code>. Then save and redeploy the site.</p>
++    <p>This page is not linked from anywhere on the public site and has no login — it's just a convenience form that formats a new entry for you. Fill it out, copy the generated code, and paste it as a new item at the top of the <code>CR_POSTS</code> array in <code>posts.js</code>. Then save and redeploy the site.</p>
+   </div>
+ </section>
+ 
+@@ -68,7 +68,7 @@
+         <button class="btn" type="button" id="generate-btn" style="margin-top:22px;">Generate Code</button>
+       </form>
+       <div>
+-        <span class="eyebrow">Copy This Into data/posts.js</span>
++        <span class="eyebrow">Copy This Into posts.js</span>
+         <textarea id="output" readonly style="width:100%;min-height:220px;font-family:'IBM Plex Mono',monospace;font-size:13px;padding:14px;border:1px solid var(--rule-light);background:#fff;"></textarea>
+         <button class="btn ghost dark" id="copy-btn" type="button" style="margin-top:12px;">Copy to Clipboard</button>
+       </div>
+@@ -109,7 +109,7 @@ document.getElementById('copy-btn').addEventListener('click', function(){
+   <div class="container footer-grid">
+     <div>
+       <div class="brand" style="margin-bottom:14px;">
+-        <img src="assets/logo.svg" alt="" style="width:30px;height:30px;">
++        <img src="logo.svg" alt="" style="width:30px;height:30px;">
+         <span class="brand-text">The Citizen's Record</span>
+       </div>
+       <p class="small" style="max-width:280px;">Civic education through primary sources — constitutional rights, legislation, court decisions, and public records, explained plainly.</p>
+@@ -151,8 +151,8 @@ document.getElementById('copy-btn').addEventListener('click', function(){
+   </div>
+ </footer>
+ 
+-<script src="data/posts.js"></script>
+-<script src="js/main.js"></script>
++<script src="posts.js"></script>
++<script src="main.js"></script>
+ 
+ </body>
+ </html>
+diff --git a/contact.html b/contact.html
+index edceaa4..09f6d68 100644
+--- a/contact.html
++++ b/contact.html
+@@ -5,14 +5,14 @@
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Contact | The Citizen's Record</title>
+ <meta name="description" content="Contact The Citizens Record with story tips, corrections, or questions.">
+-<link rel="stylesheet" href="css/style.css">
++<link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+ 
+ <header class="site-header">
+   <div class="container nav-row">
+     <a href="index.html" class="brand">
+-      <img src="assets/logo.svg" alt="">
++      <img src="logo.svg" alt="">
+       <span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span>
+     </a>
+     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+@@ -95,7 +95,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
+   <div class="container footer-grid">
+     <div>
+       <div class="brand" style="margin-bottom:14px;">
+-        <img src="assets/logo.svg" alt="" style="width:30px;height:30px;">
++        <img src="logo.svg" alt="" style="width:30px;height:30px;">
+         <span class="brand-text">The Citizen's Record</span>
+       </div>
+       <p class="small" style="max-width:280px;">Civic education through primary sources — constitutional rights, legislation, court decisions, and public records, explained plainly.</p>
+@@ -137,8 +137,8 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
+   </div>
+ </footer>
+ 
+-<script src="data/posts.js"></script>
+-<script src="js/main.js"></script>
++<script src="posts.js"></script>
++<script src="main.js"></script>
+ 
+ </body>
+ </html>
+diff --git a/index.html b/index.html
+index fbc20ad..0fa46bb 100644
+--- a/index.html
++++ b/index.html
+@@ -3,234 +3,60 @@
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-<title>The Citizen's Record — The Law Belongs to the People</title>
+-<meta name="description" content="Civic education through primary sources: constitutional rights, legislation, court decisions, and public records, explained plainly.">
+-<link rel="stylesheet" href="css/style.css">
++<title>The Citizen's Record — Start with a Question</title>
++<meta name="description" content="Source-first civic education that helps you move from a public claim to a checkable record.">
++<link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+-
+ <header class="site-header">
+   <div class="container nav-row">
+-    <a href="index.html" class="brand">
+-      <img src="assets/logo.svg" alt="">
+-      <span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span>
+-    </a>
++    <a href="index.html" class="brand"><img src="logo.svg" alt=""><span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span></a>
+     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+-        <nav class="primary">
+-      <a href="index.html">Home</a>
+-      <a href="the-record.html">The Record</a>
+-      <a href="read-the-record.html">Read the Record</a>
+-      <a href="learn.html">Learn</a>
+-      <a href="toolkit.html">Citizen Toolkit</a>
+-      <a href="about.html">About</a>
+-      <a href="contact.html">Contact</a>
+-      <a href="updates.html" class="nav-cta">Daily Log</a>
++    <nav class="primary" aria-label="Primary navigation">
++      <a href="index.html">Start here</a><a href="the-record.html">The Record</a><a href="toolkit.html">Toolkit</a><a href="learn.html">Learn</a><a href="about.html">Standards</a><a href="contact.html">Contact</a><a href="record-builder.html" class="nav-cta">Start a record</a>
+     </nav>
+   </div>
+ </header>
+ 
+-<section class="hero on-dark">
+-  <div class="container hero-inner">
+-    <span class="docket">Vol. I · Est. 2026 · Civic Archive</span>
+-    <h1>The Law Belongs to <em>the People</em>.</h1>
+-    <p class="lede">We trace America's rights through legislation, court decisions, and public records — so you can understand what the law actually says.</p>
+-    <a href="learn.html" class="btn">Explore the Site →</a>
+-  </div>
+-</section>
+-
+-<section id="mission">
+-  <div class="container">
+-    <span class="eyebrow">Mission</span>
+-    <p class="pull">The Citizen's Record exists because most Americans encounter the law secondhand — through headlines, soundbites, and campaign ads. We go to <span>the primary source</span>: the bill text, the opinion, the transcript, the filing. Then we explain it plainly, without telling you what to think about it.</p>
+-    <div class="values-grid">
+-      <div><h4>Evidence Before Opinion</h4><p>We show you the document first. Analysis comes second, and it's always labeled as analysis.</p></div>
+-      <div><h4>Primary Sources Over Headlines</h4><p>Every claim links back to the bill, ruling, or record it came from.</p></div>
+-      <div><h4>Politically Independent</h4><p>We don't endorse candidates or parties. The Constitution isn't a team sport.</p></div>
++<main id="main-content">
++<section class="hero on-dark hero-split">
++  <div class="container hero-grid">
++    <div class="hero-inner">
++      <span class="docket">A public evidence-workbench · Est. 2026</span>
++      <h1>Start with a <em>question.</em><br>Build a record you can check.</h1>
++      <p class="lede">Citizen's Record helps you move from a public claim to the source, evidence, finding, and unknowns—without telling you what conclusion to reach.</p>
++      <div class="hero-actions"><a href="record-builder.html" class="btn">Start a record →</a><a href="#method" class="btn ghost">Learn the method</a></div>
++      <p class="trust-line">Independent civic education · Source-first · Not legal advice</p>
+     </div>
++    <div class="hero-note" aria-label="The record method preview"><span class="docket">Record method / 01–05</span><p>Read the document.<br><strong>Then decide</strong> what it means.</p><div class="note-rule"></div><span class="small on-dark-text">A record is stronger when it shows what remains unknown.</span></div>
+   </div>
+ </section>
+ 
+-<section class="alt">
+-  <div class="container">
+-    <div class="section-head">
+-      <div><span class="eyebrow">Featured Investigations</span><h2>The Citizen's Forensics</h2></div>
+-      <a class="view-all" href="updates.html">View the Daily Log →</a>
+-    </div>
+-    <div class="grid cols-3">
+-      <article class="card">
+-        <div class="card-media"><span class="docket">Case File 001</span></div>
+-        <div class="card-body">
+-          <span class="card-tag">Investigation</span>
+-          <h3>Who Actually Writes the Bills?</h3>
+-          <p>Tracing a piece of model legislation from a policy shop to the floor of a state house.</p>
+-          <div class="card-meta">12 min read · Primary sources: 6</div>
+-        </div>
+-      </article>
+-      <article class="card">
+-        <div class="card-media"><span class="docket">Case File 002</span></div>
+-        <div class="card-body">
+-          <span class="card-tag">Investigation</span>
+-          <h3>Reading a FOIA Denial Like a Lawyer</h3>
+-          <p>What the exemption codes on your rejection letter actually mean, and how to appeal them.</p>
+-          <div class="card-meta">9 min read · Primary sources: 4</div>
+-        </div>
+-      </article>
+-      <article class="card">
+-        <div class="card-media"><span class="docket">Case File 003</span></div>
+-        <div class="card-body">
+-          <span class="card-tag">Investigation</span>
+-          <h3>The Rulemaking Comment Nobody Reads</h3>
+-          <p>Federal agencies are required to respond to public comments. Here's how often they actually do.</p>
+-          <div class="card-meta">15 min read · Primary sources: 8</div>
+-        </div>
+-      </article>
++<section id="method" class="method-band">
++  <div class="container"><div class="section-head"><div><span class="eyebrow">The method</span><h2>From noise to a checkable record.</h2></div><span class="method-note">Five steps. One honest conclusion.</span></div>
++    <div class="method-grid">
++      <article><span class="method-num">01</span><h3>Question</h3><p>What are you trying to understand?</p></article>
++      <article><span class="method-num">02</span><h3>Source</h3><p>Where did the information originate?</p></article>
++      <article><span class="method-num">03</span><h3>Evidence</h3><p>What does the document actually show?</p></article>
++      <article><span class="method-num">04</span><h3>Finding</h3><p>What does the evidence support?</p></article>
++      <article><span class="method-num">05</span><h3>Unknown</h3><p>What remains unanswered?</p></article>
+     </div>
+   </div>
+ </section>
+ 
+-<section>
+-  <div class="container">
+-    <div class="section-head">
+-      <div><span class="eyebrow">Latest Video</span><h2>New From the Archive</h2></div>
+-      <a class="view-all" href="updates.html">View updates →</a>
+-    </div>
+-    <div class="grid cols-2">
+-      <div class="card">
+-        <div class="card-media" style="aspect-ratio:16/9;"><span class="docket">▶ Video · 18:42</span></div>
+-        <div class="card-body">
+-          <span class="card-tag">Citizen's Forensics</span>
+-          <h3>How a Bill Actually Becomes Law</h3>
+-          <p>Not the Schoolhouse Rock version — a real bill, tracked through committee markup, floor amendments, and conference.</p>
+-        </div>
+-      </div>
+-      <div id="latest-update" class="card" style="padding:22px 24px;">
+-        <p class="small" style="margin:0;">Loading latest update…</p>
+-      </div>
+-    </div>
+-  </div>
+-</section>
++<section class="ruled mission-section"><div class="container mission-layout"><div><span class="eyebrow">Why this exists</span><h2>A civic library for people who want to investigate for themselves.</h2></div><div><p class="pull-copy">A person who can locate a public record, read a statute, follow a docket, and label an unknown is harder to mislead.</p><p>We show the process, link to the source, and leave room for citizens to decide. The point is not to create followers of information. It is to create investigators of information.</p><a class="text-link" href="about.html">Read the editorial charter →</a></div></div></section>
+ 
+-<section class="alt">
+-  <div class="container">
+-    <div class="section-head">
+-      <div><span class="eyebrow">Featured Legislation</span><h2>Bills Currently Moving</h2></div>
+-      <a class="view-all" href="learn.html">Explore civic resources →</a>
+-    </div>
+-    <div class="record-list">
+-      <div class="record-row">
+-        <span class="rnum">H.R. 4102</span>
+-        <div><h4>Federal Agency Records Modernization Act</h4><p>Would require agencies to publish rulemaking dockets in a standard machine-readable format.</p></div>
+-        <span class="status moving">Committee</span>
+-      </div>
+-      <div class="record-row">
+-        <span class="rnum">S. 1187</span>
+-        <div><h4>Public Meetings Access Act</h4><p>Expands livestream requirements for federal advisory committee meetings.</p></div>
+-        <span class="status moving">Floor Vote Pending</span>
+-      </div>
+-      <div class="record-row">
+-        <span class="rnum">H.R. 2871</span>
+-        <div><h4>FOIA Response Timeliness Act</h4><p>Sets enforceable response-time benchmarks for federal FOIA requests.</p></div>
+-        <span class="status passed">Passed House</span>
+-      </div>
+-    </div>
+-  </div>
+-</section>
++<section class="sample-section"><div class="container"><div class="section-head"><div><span class="eyebrow">See the structure</span><h2>A record can be useful before it is complete.</h2></div><a class="view-all" href="the-record.html">Read field notes →</a></div>
++  <div class="sample-record"><div class="sample-top"><span class="docket">Sample record · Learning example</span><span class="status decided">Source-linked</span></div><div class="sample-grid"><div><span class="label">Question</span><h3>What action did the agency formally take?</h3><span class="label">Primary source</span><p class="source-line">Official order · dated record · page 4</p></div><div><span class="label">Evidence</span><p>“The agency shall publish the notice and supporting materials…”</p><span class="truth-badge law">LAW — VERIFIED AUTHORITY</span></div><div><span class="label">Finding</span><p>The order requires publication of the notice and supporting materials.</p><span class="truth-badge fact">FACT — VERIFIED</span></div><div><span class="label">Unknown</span><p>The record does not show whether every supporting material was published.</p><span class="truth-badge unknown">UNKNOWN</span></div></div><a href="record-builder.html" class="btn dark">Build your own record →</a></div>
++</div></section>
+ 
+-<section>
+-  <div class="container">
+-    <div class="section-head">
+-      <div><span class="eyebrow">Latest Court Cases</span><h2>Recently Decided</h2></div>
+-      <a class="view-all" href="learn.html">Learn about the law →</a>
+-    </div>
+-    <div class="grid cols-3">
+-      <article class="card">
+-        <div class="card-body">
+-          <span class="card-tag">Fourth Amendment</span>
+-          <h3>Search &amp; Digital Devices</h3>
+-          <p>What the Court's latest ruling changes — and doesn't — about warrantless device searches.</p>
+-          <div class="card-meta"><span class="status decided">Decided</span></div>
+-        </div>
+-      </article>
+-      <article class="card">
+-        <div class="card-body">
+-          <span class="card-tag">Administrative Law</span>
+-          <h3>Agency Deference Revisited</h3>
+-          <p>A breakdown of how courts are applying the post-Chevron standard to new rulemakings.</p>
+-          <div class="card-meta"><span class="status decided">Decided</span></div>
+-        </div>
+-      </article>
+-      <article class="card">
+-        <div class="card-body">
+-          <span class="card-tag">First Amendment</span>
+-          <h3>Public Forum Doctrine Online</h3>
+-          <p>Does a government social media account count as a public forum? The circuits disagree.</p>
+-          <div class="card-meta"><span class="status decided">Decided</span></div>
+-        </div>
+-      </article>
+-    </div>
+-  </div>
+-</section>
++<section class="alt routes-section"><div class="container"><div class="section-head"><div><span class="eyebrow">Choose a starting point</span><h2>Where should we begin?</h2></div></div><div class="grid cols-3"><a class="route-card" href="toolkit.html"><span class="route-icon">01</span><h3>Check a claim</h3><p>Separate a statement from the evidence offered for it, then work backward to the original record.</p><span class="text-link">Open the verification toolkit →</span></a><a class="route-card" href="toolkit.html"><span class="route-icon">02</span><h3>Read a public document</h3><p>Learn how to find the issuing institution, date, authority, operative language, and exceptions.</p><span class="text-link">Learn the source method →</span></a><a class="route-card" href="record-builder.html"><span class="route-icon">03</span><h3>Build a record</h3><p>Turn a question into organized notes, sources, evidence, findings, and unknowns.</p><span class="text-link">Open the Record Builder →</span></a></div></div></section>
+ 
+-<section class="cta-band">
+-  <div class="container">
+-    <span class="docket on-dark" style="margin-bottom:18px;">Subscribe</span>
+-    <h2>Get the Record, Not the Noise</h2>
+-    <p>One email. New investigations, tracked legislation, and plain-language breakdowns of court decisions — no spin.</p>
+-    <form class="cta-form" onsubmit="event.preventDefault(); this.reset(); alert('Thanks — you are on the list.');">
+-      <input type="email" placeholder="you@example.com" required aria-label="Email address">
+-      <button class="btn" type="submit" style="margin-top:0;">Subscribe</button>
+-    </form>
+-    <p class="form-note">No spam. Unsubscribe anytime. We never sell your information.</p>
+-  </div>
+-</section>
++<section class="truth-section"><div class="container truth-layout"><div><span class="eyebrow">Our truth standard</span><h2>Evidence is not a mood.</h2><p>We never turn an allegation into a fact because it makes a better headline. When the evidence is incomplete, we say so.</p><a href="about.html" class="btn ghost">Read our standards →</a></div><div class="truth-list"><div><span class="truth-badge fact">FACT</span><p>Verified by a reliable source.</p></div><div><span class="truth-badge law">LAW</span><p>Supported by identified authority.</p></div><div><span class="truth-badge claim">CLAIM</span><p>Attributed to a person or organization.</p></div><div><span class="truth-badge question">QUESTION</span><p>Specific and unresolved.</p></div><div><span class="truth-badge unknown">UNKNOWN</span><p>The available record does not answer it yet.</p></div></div></div></section>
+ 
+-<footer class="site-footer">
+-  <div class="container footer-grid">
+-    <div>
+-      <div class="brand" style="margin-bottom:14px;">
+-        <img src="assets/logo.svg" alt="" style="width:30px;height:30px;">
+-        <span class="brand-text">The Citizen's Record</span>
+-      </div>
+-      <p class="small" style="max-width:280px;">Civic education through primary sources — constitutional rights, legislation, court decisions, and public records, explained plainly.</p>
+-      <div class="social-row">
+-        <a href="https://www.youtube.com/@14ss88thomascallen" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
+-        <a href="https://x.com/tommycallen16" target="_blank" rel="noopener" aria-label="X / Twitter">𝕏</a>
+-        <a href="https://www.facebook.com/TheRealThomasCAllen" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+-      </div>
+-    </div>
+-    <div>
+-            <h5>Explore</h5>
+-      <ul>
+-        <li><a href="the-record.html">The Record</a></li>
+-        <li><a href="read-the-record.html">Read the Record</a></li>
+-        <li><a href="learn.html">Learn</a></li>
+-        <li><a href="toolkit.html">Citizen Toolkit</a></li>
+-      </ul>
+-    </div>
+-    <div>
+-      <h5>About</h5>
+-      <ul>
+-        <li><a href="about.html#mission">Mission</a></li>
+-        <li><a href="about.html#standards">Editorial Standards</a></li>
+-        <li><a href="about.html#factchecking">Fact-Checking Policy</a></li>
+-        <li><a href="about.html#sources">Sources Policy</a></li>
+-      </ul>
+-    </div>
+-    <div>
+-      <h5>Connect</h5>
+-      <ul>
+-        <li><a href="contact.html">Contact</a></li>
+-        <li><a href="updates.html">Daily Log</a></li>
+-      </ul>
+-    </div>
+-  </div>
+-  <div class="container footer-bottom">
+-    <span>© 2026 The Citizen's Record. Educational use — not legal advice.</span>
+-    <span>Independent · Nonpartisan · Primary sources only</span>
+-  </div>
+-</footer>
++<section class="cta-band"><div class="container"><span class="docket on-dark">Your next question</span><h2>Open a record before you open a comment box.</h2><p>Start with one question. Add one source. Name one unknown. That is enough to begin.</p><a href="record-builder.html" class="btn">Start a record →</a></div></section>
++</main>
+ 
+-<script src="data/posts.js"></script>
+-<script src="js/main.js"></script>
+-</body>
+-</html>
++<footer class="site-footer"><div class="container footer-grid"><div><div class="brand" style="margin-bottom:14px"><img src="logo.svg" alt="" style="width:30px;height:30px"><span class="brand-text">The Citizen's Record</span></div><p class="small" style="max-width:290px">Civic education through primary sources—constitutional rights, legislation, court decisions, and public records, explained plainly.</p></div><div><h5>Explore</h5><ul><li><a href="record-builder.html">Start a record</a></li><li><a href="the-record.html">The Record</a></li><li><a href="toolkit.html">Toolkit</a></li></ul></div><div><h5>Trust</h5><ul><li><a href="about.html">Editorial standards</a></li><li><a href="about.html#truth-standard">Truth Standard</a></li><li><a href="contact.html">Send a correction</a></li></ul></div><div><h5>Connect</h5><ul><li><a href="contact.html">Contact</a></li><li><a href="updates.html">Daily Log</a></li></ul></div></div><div class="container footer-bottom"><span>© 2026 The Citizen's Record. Educational use—not legal advice.</span><span>Independent · Nonpartisan · Primary sources</span></div></footer>
++<script src="posts.js"></script><script src="main.js"></script>
++</body></html>
+diff --git a/learn.html b/learn.html
+index 4f3fc1b..48fbd80 100644
+--- a/learn.html
++++ b/learn.html
+@@ -5,14 +5,14 @@
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Learn — Constitution, Bill of Rights & Civics | The Citizen's Record</title>
+ <meta name="description" content="Plain-language guides to the Constitution, Bill of Rights, legislative process, and how to read statutes and court opinions.">
+-<link rel="stylesheet" href="css/style.css">
++<link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+ 
+ <header class="site-header">
+   <div class="container nav-row">
+     <a href="index.html" class="brand">
+-      <img src="assets/logo.svg" alt="">
++      <img src="logo.svg" alt="">
+       <span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span>
+     </a>
+     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+@@ -96,7 +96,7 @@
+   <div class="container footer-grid">
+     <div>
+       <div class="brand" style="margin-bottom:14px;">
+-        <img src="assets/logo.svg" alt="" style="width:30px;height:30px;">
++        <img src="logo.svg" alt="" style="width:30px;height:30px;">
+         <span class="brand-text">The Citizen's Record</span>
+       </div>
+       <p class="small" style="max-width:280px;">Civic education through primary sources — constitutional rights, legislation, court decisions, and public records, explained plainly.</p>
+@@ -138,8 +138,8 @@
+   </div>
+ </footer>
+ 
+-<script src="data/posts.js"></script>
+-<script src="js/main.js"></script>
++<script src="posts.js"></script>
++<script src="main.js"></script>
+ 
+ </body>
+ </html>
+diff --git a/main.js b/main.js
+index 5d485dc..7b0c923 100644
+--- a/main.js
++++ b/main.js
+@@ -40,6 +40,43 @@ document.addEventListener('DOMContentLoaded', () => {
+     renderUpdateLog(logEl, window.CR_POSTS);
+   }
+ 
++  // Record Builder: preserve a lightweight draft locally and support guide-aware onboarding
++  const recordForm = document.getElementById('record-form');
++  const recordSummary = document.getElementById('record-summary');
++  if (recordForm) {
++    const saved = JSON.parse(localStorage.getItem('cr-record-draft') || '{}');
++    const questionInput = document.getElementById('record-question');
++    const sourceInput = document.getElementById('record-source');
++    if (saved.question && questionInput) questionInput.value = saved.question;
++    if (saved.source && sourceInput) sourceInput.value = saved.source;
++    const guide = new URLSearchParams(location.search).get('guide');
++    const guideNames = {
++      'find-government-documents':'Finding government documents',
++      'read-a-docket':'How to read a docket',
++      'public-records-request':'Making a public-records request',
++      'follow-public-money':'Following public money',
++      'verify-a-claim':'How to verify a claim'
++    };
++    if (guide && guideNames[guide] && questionInput && !questionInput.value) questionInput.placeholder = `What do you want to understand about ${guideNames[guide].toLowerCase()}?`;
++    recordForm.addEventListener('submit', event => {
++      event.preventDefault();
++      const draft = { question: questionInput.value.trim(), source: sourceInput.value.trim(), createdAt: new Date().toISOString() };
++      localStorage.setItem('cr-record-draft', JSON.stringify(draft));
++      const status = document.getElementById('builder-status');
++      if (status) status.textContent = 'Saved locally. Your first record step is complete.';
++      if (recordSummary) {
++        recordSummary.hidden = false;
++        document.getElementById('summary-question').textContent = draft.question;
++        document.getElementById('summary-source').textContent = draft.source || 'No source added yet — that is the next step.';
++      }
++      recordForm.querySelectorAll('input, textarea, button').forEach(el => el.disabled = true);
++      const progress = document.getElementById('builder-progress');
++      if (progress) progress.textContent = '02 / 04';
++      document.querySelectorAll('.builder-step').forEach((el, i) => { el.classList.toggle('active', i < 2); });
++      window.dispatchEvent(new CustomEvent('cr:record-started', { detail: draft }));
++    });
++  }
++
+   // render homepage latest update strip
+   const latestEl = document.getElementById('latest-update');
+   if (latestEl && Array.isArray(window.CR_POSTS) && window.CR_POSTS.length) {
+diff --git a/read-the-record.html b/read-the-record.html
+index b9f5e9c..a51f60a 100644
+--- a/read-the-record.html
++++ b/read-the-record.html
+@@ -5,14 +5,14 @@
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Read the Record — Bills, Court Decisions, Rulemaking, FOIA | The Citizen's Record</title>
+ <meta name="description" content="Track bills moving through Congress, Supreme Court decisions, agency rulemaking, and FOIA resources.">
+-<link rel="stylesheet" href="css/style.css">
++<link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+ 
+ <header class="site-header">
+   <div class="container nav-row">
+     <a href="index.html" class="brand">
+-      <img src="assets/logo.svg" alt="">
++      <img src="logo.svg" alt="">
+       <span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span>
+     </a>
+     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+@@ -156,7 +156,7 @@
+   <div class="container footer-grid">
+     <div>
+       <div class="brand" style="margin-bottom:14px;">
+-        <img src="assets/logo.svg" alt="" >
++        <img src="logo.svg" alt="" >
+         <span class="brand-text">The Citizen's Record</span>
+       </div>
+       <p class="small" style="max-width:280px;">Civic education through primary sources — constitutional rights, legislation, court decisions, and public records, explained plainly.</p>
+@@ -198,8 +198,8 @@
+   </div>
+ </footer>
+ 
+-<script src="data/posts.js"></script>
+-<script src="js/main.js"></script>
++<script src="posts.js"></script>
++<script src="main.js"></script>
+ 
+ </body>
+ </html>
+diff --git a/record-builder.html b/record-builder.html
+new file mode 100644
+index 0000000..fa290d7
+--- /dev/null
++++ b/record-builder.html
+@@ -0,0 +1,8 @@
++<!DOCTYPE html>
++<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Start a Record — The Citizen's Record</title><meta name="description" content="Build a source-linked record of what is known, alleged, and still unknown."><link rel="stylesheet" href="style.css"></head><body>
++<header class="site-header"><div class="container nav-row"><a href="index.html" class="brand"><img src="logo.svg" alt=""><span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span></a><button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button><nav class="primary" aria-label="Primary navigation"><a href="index.html">Start here</a><a href="the-record.html">The Record</a><a href="toolkit.html">Toolkit</a><a href="learn.html">Learn</a><a href="about.html">Standards</a><a href="contact.html">Contact</a><a href="record-builder.html" class="nav-cta">Start a record</a></nav></div></header>
++<main id="main-content"><section class="page-hero builder-hero"><div class="container"><div class="breadcrumb">Record Builder / New record</div><h1>Build a record you can check.</h1><p>Begin with one question. Add the first source you find. Label what is known and what is not.</p></div></section>
++<section class="builder-section"><div class="container builder-layout"><div class="builder-intro"><span class="eyebrow">A guided workspace</span><h2>Start small. Stay honest.</h2><p>This lightweight record is for organizing research. It does not provide legal advice or decide what a document means for you.</p><div class="builder-steps"><div class="builder-step active"><span>01</span><div><strong>Question</strong><small>What are you trying to understand?</small></div></div><div class="builder-step"><span>02</span><div><strong>Source</strong><small>Where did the information originate?</small></div></div><div class="builder-step"><span>03</span><div><strong>Evidence</strong><small>What does the document actually show?</small></div></div><div class="builder-step"><span>04</span><div><strong>Unknown</strong><small>What remains unanswered?</small></div></div></div><div class="truth-card compact"><span class="eyebrow">Truth Standard</span><p>Use labels to keep a source, an allegation, an inference, and an unknown from collapsing into one statement.</p><div class="truth-badge-row"><span class="truth-badge fact">FACT</span><span class="truth-badge claim">CLAIM</span><span class="truth-badge unknown">UNKNOWN</span></div></div></div>
++<div class="builder-card"><div class="builder-card-head"><div><span class="docket">New record · saved locally</span><h3 id="builder-title">What are you trying to understand?</h3></div><span id="builder-progress" class="progress-label">01 / 04</span></div><form id="record-form"><label for="record-question">Your question</label><textarea id="record-question" name="question" placeholder="Example: What action did the agency formally take?" required></textarea><p class="field-help">Make it specific enough that a document could help answer it.</p><label for="record-source">First source (optional for now)</label><input id="record-source" name="source" type="url" placeholder="https://official-source.example/document"><p class="field-help">Prefer the original authority, order, docket, statute, meeting record, or dataset.</p><div class="builder-actions"><button type="submit" class="btn">Save and continue →</button></div><p id="builder-status" class="form-status" role="status"></p></form><div id="record-summary" class="record-summary" hidden><span class="eyebrow">Record started</span><h3 id="summary-question"></h3><div class="summary-grid"><div><span class="label">Source</span><p id="summary-source"></p></div><div><span class="label">Next step</span><p>Add one piece of evidence and label what remains unknown.</p></div></div><a href="index.html" class="text-link">Return to the method →</a></div></div></div></section>
++<section class="cta-band"><div class="container"><span class="docket on-dark">Keep going</span><h2>A record is stronger when it shows its limits.</h2><p>Come back to update the source, evidence, findings, and unknowns as your research develops.</p><a href="toolkit.html" class="btn ghost">Open the Toolkit →</a></div></section></main>
++<footer class="site-footer"><div class="container footer-bottom"><span>© 2026 The Citizen's Record. Educational use—not legal advice.</span><span><a href="about.html">Truth Standard</a> · <a href="contact.html">Send a correction</a></span></div></footer><script src="main.js"></script></body></html>
+diff --git a/style.css b/style.css
+index 73d9ed6..5cf1d9f 100644
+--- a/style.css
++++ b/style.css
+@@ -338,3 +338,15 @@ form.contact-form textarea{min-height:130px;resize:vertical;}
+ .mt-0{margin-top:0;}
+ .center{text-align:center;}
+ .small{font-size:13px;}
++
++
++/* ---------- implementation change set: method, truth standard, builder ---------- */
++.hero-split{padding:82px 0 74px;background:radial-gradient(circle at 78% 35%,rgba(176,141,79,.16),transparent 28%),linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);}
++.hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:64px;align-items:center;}
++.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
++.trust-line{font-family:'IBM Plex Mono',monospace!important;font-size:10.5px!important;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-bright)!important;margin:20px 0 0!important;}
++.hero-note{border:1px solid rgba(243,238,224,.18);padding:28px;background:linear-gradient(145deg,rgba(243,238,224,.06),rgba(243,238,224,.015));min-height:260px;display:flex;flex-direction:column;justify-content:flex-end;}
++.hero-note p{font-family:'Fraunces',serif;font-size:29px;line-height:1.12;color:var(--parchment);margin:42px 0 20px;}.hero-note p strong{color:var(--gold-bright);font-weight:400;}.note-rule{border-top:1px solid rgba(243,238,224,.18);margin-bottom:12px;}.on-dark-text{color:var(--parchment-dim)!important;}
++.method-band{padding:56px 0;background:var(--parchment);}.method-note{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);}.method-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule-light);border:1px solid var(--rule-light);}.method-grid article{background:var(--parchment);padding:22px 18px;min-height:145px;}.method-num,.route-icon{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:12px;letter-spacing:.1em;display:block;margin-bottom:24px;}.method-grid h3{font-size:21px;margin-bottom:6px;}.method-grid p{font-size:13px;margin:0;}.mission-section{padding:86px 0;}.mission-layout,.truth-layout{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;}.mission-layout h2{font-size:clamp(30px,4vw,48px);max-width:520px;}.pull-copy{font-family:'Fraunces',serif;font-size:25px;line-height:1.35;color:var(--ink);}.text-link{display:inline-block;font-size:13.5px;border-bottom:1px solid var(--rule-light);padding-bottom:2px;}.text-link:hover{border-color:var(--ink);}.sample-section{padding:80px 0;}.sample-record{background:#fff;border:1px solid var(--rule-light);padding:28px;}.sample-top{display:flex;justify-content:space-between;gap:16px;align-items:center;border-bottom:1px solid var(--rule-light);padding-bottom:18px;margin-bottom:26px;}.sample-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:24px;margin-bottom:28px;}.label{display:block;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.1em;font-size:10px;color:var(--gold);margin-bottom:8px;}.sample-grid h3{font-size:20px;}.sample-grid p{font-size:14px;}.source-line{font-family:'IBM Plex Mono',monospace;font-size:11px!important;}.truth-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.06em;padding:5px 7px;border:1px solid currentColor;text-transform:uppercase;}.truth-badge.fact{color:#2e6b47;}.truth-badge.law{color:#2e4e8a;}.truth-badge.claim{color:#8a6a2e;}.truth-badge.question{color:#744a8a;}.truth-badge.unknown{color:#8a3a2e;}.route-card,.guide-card{display:block;background:#fff;border:1px solid var(--rule-light);padding:24px;transition:transform .18s ease,box-shadow .18s ease;}.route-card:hover,.guide-card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(20,24,31,.08);}.route-card h3,.guide-card h3{font-size:23px;margin-bottom:10px;}.route-card p,.guide-card p{font-size:14px;min-height:66px;}.routes-section{padding:78px 0;}.truth-section{background:var(--charcoal);color:var(--parchment);padding:78px 0;}.truth-section p{color:var(--parchment-dim);}.truth-section .eyebrow{color:var(--gold-bright);}.truth-section h2{font-size:clamp(30px,4vw,48px);}.truth-section .btn.ghost{color:var(--parchment);}.truth-list{border-top:1px solid var(--rule-dark);}.truth-list div{display:flex;gap:16px;align-items:center;border-bottom:1px solid var(--rule-dark);padding:14px 0;}.truth-list p{margin:0;font-size:14px;}.truth-card{background:var(--parchment-dim);border:1px solid var(--rule-light);padding:26px;}.truth-card h3{font-size:24px;}.truth-card p{font-size:14px;}.truth-card.compact{margin-top:28px;padding:20px;}.truth-card.compact p{margin-bottom:12px;}.truth-badge-row{display:flex;gap:7px;flex-wrap:wrap;}.method-strip{padding:36px 0;background:var(--parchment-dim);}.method-strip .container{display:flex;justify-content:space-between;gap:30px;align-items:center;}.method-strip h2{font-size:25px;margin:0;}.mini-method{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;font-size:10px;letter-spacing:.08em;color:var(--ink-soft);}.mini-method i{color:var(--gold);font-style:normal;}.builder-hero{padding-bottom:58px;}.builder-section{padding:74px 0;}.builder-layout{display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);gap:70px;align-items:start;}.builder-intro h2{font-size:39px;}.builder-intro>p{max-width:420px;}.builder-steps{margin-top:34px;border-top:1px solid var(--rule-light);}.builder-step{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--rule-light);opacity:.55;}.builder-step.active{opacity:1;}.builder-step>span{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:12px;}.builder-step strong,.builder-step small{display:block;}.builder-step strong{font-family:'Fraunces',serif;font-size:18px;font-weight:500;}.builder-step small{font-size:12px;color:var(--ink-soft);margin-top:2px;}.builder-card{background:#fff;border:1px solid var(--rule-light);padding:30px;box-shadow:0 12px 30px rgba(20,24,31,.06);}.builder-card-head{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid var(--rule-light);padding-bottom:20px;margin-bottom:24px;}.builder-card-head h3{font-size:27px;margin-top:12px;}.progress-label{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:11px;white-space:nowrap;}.builder-card label{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin:18px 0 7px;}.builder-card textarea,.builder-card input{width:100%;border:1px solid var(--rule-light);background:var(--parchment);padding:14px;font:inherit;color:var(--ink);}.builder-card textarea{min-height:135px;resize:vertical;}.field-help{font-size:12px;margin-top:7px;}.builder-actions{display:flex;justify-content:flex-end;margin-top:22px;}.form-status{font-size:13px;color:var(--gold);margin:16px 0 0;}.record-summary{border-top:1px solid var(--rule-light);padding-top:22px;margin-top:24px;}.record-summary h3{font-size:25px;}.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}.summary-grid p{font-size:14px;}.guide-card .route-icon{margin-bottom:18px;}.guide-card .text-link{margin-top:8px;}.builder-section+.cta-band{margin-top:0;}
++@media (max-width:900px){.hero-grid,.mission-layout,.truth-layout,.builder-layout{grid-template-columns:1fr;gap:38px}.method-grid{grid-template-columns:repeat(3,1fr)}.sample-grid{grid-template-columns:repeat(2,1fr)}.method-strip .container{align-items:flex-start;flex-direction:column;gap:18px}.hero-note{min-height:210px;max-width:520px;}.builder-intro h2{font-size:34px;}}
++@media (max-width:600px){.method-grid{grid-template-columns:1fr 1fr}.method-grid article{min-height:125px}.sample-grid,.summary-grid{grid-template-columns:1fr}.sample-record{padding:20px}.sample-top{align-items:flex-start;flex-direction:column}.hero-split{padding:60px 0 54px}.hero-note{display:none}.mission-section,.sample-section,.routes-section,.truth-section,.builder-section{padding:58px 0}.builder-card{padding:20px}.builder-card-head{flex-direction:column;gap:8px}.builder-card-head h3{font-size:24px}.method-strip{padding:30px 0}.mini-method{line-height:1.8}}
+diff --git a/the-record.html b/the-record.html
+index 5e83e0d..ee26d7d 100644
+--- a/the-record.html
++++ b/the-record.html
+@@ -5,14 +5,14 @@
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Record — Articles & Video | The Citizen's Record</title>
+ <meta name="description" content="Articles, video investigations, and case files from The Citizens Record.">
+-<link rel="stylesheet" href="css/style.css">
++<link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+ 
+ <header class="site-header">
+   <div class="container nav-row">
+     <a href="index.html" class="brand">
+-      <img src="assets/logo.svg" alt="">
++      <img src="logo.svg" alt="">
+       <span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span>
+     </a>
+     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+@@ -137,7 +137,7 @@
+   <div class="container footer-grid">
+     <div>
+       <div class="brand" style="margin-bottom:14px;">
+-        <img src="assets/logo.svg" alt="" >
++        <img src="logo.svg" alt="" >
+         <span class="brand-text">The Citizen's Record</span>
+       </div>
+       <p class="small" style="max-width:280px;">Civic education through primary sources — constitutional rights, legislation, court decisions, and public records, explained plainly.</p>
+@@ -179,8 +179,8 @@
+   </div>
+ </footer>
+ 
+-<script src="data/posts.js"></script>
+-<script src="js/main.js"></script>
++<script src="posts.js"></script>
++<script src="main.js"></script>
+ 
+ </body>
+ </html>
+diff --git a/toolkit.html b/toolkit.html
+index a93ac68..6962efc 100644
+--- a/toolkit.html
++++ b/toolkit.html
+@@ -1,156 +1,10 @@
+ <!DOCTYPE html>
+-<html lang="en">
+-<head>
+-<meta charset="UTF-8">
+-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+-<title>Citizen Toolkit | The Citizen's Record</title>
+-<meta name="description" content="Practical tools for contacting representatives, tracking legislation, and filing FOIA requests.">
+-<link rel="stylesheet" href="css/style.css">
+-</head>
+-<body>
+-
+-<header class="site-header">
+-  <div class="container nav-row">
+-    <a href="index.html" class="brand">
+-      <img src="assets/logo.svg" alt="">
+-      <span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span>
+-    </a>
+-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+-        <nav class="primary">
+-      <a href="index.html">Home</a>
+-      <a href="the-record.html">The Record</a>
+-      <a href="read-the-record.html">Read the Record</a>
+-      <a href="learn.html">Learn</a>
+-      <a href="toolkit.html">Citizen Toolkit</a>
+-      <a href="about.html">About</a>
+-      <a href="contact.html">Contact</a>
+-      <a href="updates.html" class="nav-cta">Daily Log</a>
+-    </nav>
+-  </div>
+-</header>
+-
+-<section class="page-hero">
+-  <div class="container">
+-    <div class="breadcrumb">Citizen Toolkit</div>
+-    <h1>Put It to Use</h1>
+-    <p>Practical, lawful steps for engaging with your government — contacting representatives, tracking legislation, and requesting public records.</p>
+-  </div>
+-</section>
+-
+-<section>
+-  <div class="container">
+-    <div class="grid cols-2">
+-      <div>
+-        <span class="eyebrow">Toolkit 01</span>
+-        <h2>Contact Your Representatives</h2>
+-        <div class="steps">
+-          <div class="step"><h4>Find your officials</h4><p>Look up your representative, senators, and state legislators by address.</p></div>
+-          <div class="step"><h4>Pick the right channel</h4><p>Phone calls and in-person meetings generally get more attention than form emails.</p></div>
+-          <div class="step"><h4>Reference the bill number</h4><p>Cite the specific bill or issue — staff track constituent contact by topic.</p></div>
+-          <div class="step"><h4>Be specific and brief</h4><p>State your position and the outcome you want in the first two sentences.</p></div>
+-        </div>
+-      </div>
+-      <div>
+-        <span class="eyebrow">Toolkit 02</span>
+-        <h2>Track Legislation</h2>
+-        <div class="steps">
+-          <div class="step"><h4>Start at Congress.gov</h4><p>Search by keyword, sponsor, or bill number to find full text and status.</p></div>
+-          <div class="step"><h4>Set up alerts</h4><p>Congress.gov lets you save searches and follow specific bills for updates.</p></div>
+-          <div class="step"><h4>Read the committee report</h4><p>Committee reports explain intent and often matter more than the bill text alone.</p></div>
+-          <div class="step"><h4>Check your state legislature</h4><p>Most states have an equivalent public bill-tracking site — bookmark yours.</p></div>
+-        </div>
+-      </div>
+-    </div>
+-  </div>
+-</section>
+-
+-<section class="alt">
+-  <div class="container">
+-    <div class="grid cols-2">
+-      <div>
+-        <span class="eyebrow">Toolkit 03</span>
+-        <h2>File a FOIA Request</h2>
+-        <div class="steps">
+-          <div class="step"><h4>Identify the right agency</h4><p>FOIA covers federal agencies only — states have their own public records laws.</p></div>
+-          <div class="step"><h4>Write a specific request</h4><p>Vague requests get delayed. Name the records, date range, and format you want.</p></div>
+-          <div class="step"><h4>Submit and log it</h4><p>Most agencies have an online portal. Save your confirmation and tracking number.</p></div>
+-          <div class="step"><h4>Know your appeal rights</h4><p>A denial isn't final — administrative appeals have their own short deadlines.</p></div>
+-        </div>
+-      </div>
+-      <div>
+-        <span class="eyebrow">Toolkit 04</span>
+-        <h2>Public Outreach to Representatives</h2>
+-        <div class="steps">
+-          <div class="step"><h4>Town halls</h4><p>Public meetings are recorded and often livestreamed — find the schedule.</p></div>
+-          <div class="step"><h4>Public comment periods</h4><p>Agencies must accept and consider comments on proposed rules — this is your formal input.</p></div>
+-          <div class="step"><h4>Written testimony</h4><p>Committees often accept written testimony from the public on pending bills.</p></div>
+-          <div class="step"><h4>Coalition letters</h4><p>Organized, signed letters from constituent groups carry more institutional weight.</p></div>
+-        </div>
+-      </div>
+-    </div>
+-  </div>
+-</section>
+-
+-<section>
+-  <div class="container">
+-    <span class="eyebrow">More Resources</span>
+-    <h2>Civic Engagement Resources</h2>
+-    <div class="grid cols-3">
+-      <article class="card"><div class="card-body"><h3>Voter Registration</h3><p>Check or update your registration status by state.</p></div></article>
+-      <article class="card"><div class="card-body"><h3>Jury Duty, Explained</h3><p>What to expect and your rights and obligations as a juror.</p></div></article>
+-      <article class="card"><div class="card-body"><h3>Attending a City Council Meeting</h3><p>Local government moves fastest — and is easiest to influence directly.</p></div></article>
+-    </div>
+-  </div>
+-</section>
+-
+-<footer class="site-footer">
+-  <div class="container footer-grid">
+-    <div>
+-      <div class="brand" style="margin-bottom:14px;">
+-        <img src="assets/logo.svg" alt="" style="width:30px;height:30px;">
+-        <span class="brand-text">The Citizen's Record</span>
+-      </div>
+-      <p class="small" style="max-width:280px;">Civic education through primary sources — constitutional rights, legislation, court decisions, and public records, explained plainly.</p>
+-      <div class="social-row">
+-        <a href="https://www.youtube.com/@14ss88thomascallen" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
+-        <a href="https://x.com/tommycallen16" target="_blank" rel="noopener" aria-label="X / Twitter">𝕏</a>
+-        <a href="https://www.facebook.com/TheRealThomasCAllen" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+-      </div>
+-    </div>
+-    <div>
+-            <h5>Explore</h5>
+-      <ul>
+-        <li><a href="the-record.html">The Record</a></li>
+-        <li><a href="read-the-record.html">Read the Record</a></li>
+-        <li><a href="learn.html">Learn</a></li>
+-        <li><a href="toolkit.html">Citizen Toolkit</a></li>
+-      </ul>
+-    </div>
+-    <div>
+-      <h5>About</h5>
+-      <ul>
+-        <li><a href="about.html#mission">Mission</a></li>
+-        <li><a href="about.html#standards">Editorial Standards</a></li>
+-        <li><a href="about.html#factchecking">Fact-Checking Policy</a></li>
+-        <li><a href="about.html#sources">Sources Policy</a></li>
+-      </ul>
+-    </div>
+-    <div>
+-      <h5>Connect</h5>
+-      <ul>
+-        <li><a href="contact.html">Contact</a></li>
+-        <li><a href="updates.html">Daily Log</a></li>
+-      </ul>
+-    </div>
+-  </div>
+-  <div class="container footer-bottom">
+-    <span>© 2026 The Citizen's Record. Educational use — not legal advice.</span>
+-    <span>Independent · Nonpartisan · Primary sources only</span>
+-  </div>
+-</footer>
+-
+-<script src="data/posts.js"></script>
+-<script src="js/main.js"></script>
+-
+-</body>
+-</html>
++<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Citizen Toolkit — Learn How to Investigate</title><meta name="description" content="Practical field guides for finding, reading, and checking public information."><link rel="stylesheet" href="style.css"></head><body>
++<header class="site-header"><div class="container nav-row"><a href="index.html" class="brand"><img src="logo.svg" alt=""><span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span></a><button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button><nav class="primary" aria-label="Primary navigation"><a href="index.html">Start here</a><a href="the-record.html">The Record</a><a href="toolkit.html">Toolkit</a><a href="learn.html">Learn</a><a href="about.html">Standards</a><a href="contact.html">Contact</a><a href="record-builder.html" class="nav-cta">Start a record</a></nav></div></header>
++<main id="main-content"><section class="page-hero"><div class="container"><div class="breadcrumb">Citizen Toolkit</div><h1>Learn how to investigate.</h1><p>Practical field manuals for finding documents, following public systems, and checking a claim without replacing the source.</p><a href="record-builder.html" class="btn">Use a method in a new record →</a></div></section>
++<section class="method-strip"><div class="container"><div><span class="eyebrow">The workflow</span><h2>Learn one method. Then use it on a question of your own.</h2></div><div class="mini-method"><span>Question</span><i>→</i><span>Source</span><i>→</i><span>Evidence</span><i>→</i><span>Unknown</span></div></div></section>
++<section><div class="container"><div class="section-head"><div><span class="eyebrow">Research tools</span><h2>Find the record behind the story.</h2></div></div><div class="grid cols-2"><a class="guide-card" href="record-builder.html?guide=find-government-documents"><span class="route-icon">01</span><span class="card-tag">Research tools</span><h3>Finding government documents</h3><p>Start with the institution that created the record instead of a summary about it.</p><span class="text-link">Open field manual →</span></a><a class="guide-card" href="record-builder.html?guide=read-a-docket"><span class="route-icon">02</span><span class="card-tag">Research tools</span><h3>How to read a docket</h3><p>Use a case number to trace filings, orders, judgments, and procedural history.</p><span class="text-link">Open field manual →</span></a></div></div></section>
++<section class="alt"><div class="container"><div class="section-head"><div><span class="eyebrow">Public records</span><h2>Make the process traceable.</h2></div></div><div class="grid cols-2"><a class="guide-card" href="record-builder.html?guide=public-records-request"><span class="route-icon">03</span><span class="card-tag">Public records</span><h3>Making a public-records request</h3><p>Ask for defined records, narrow the time range, and log the response process.</p><span class="text-link">Open field manual →</span></a><a class="guide-card" href="record-builder.html?guide=follow-public-money"><span class="route-icon">04</span><span class="card-tag">Public records</span><h3>Following public money</h3><p>Use contracts, budgets, and campaign-finance systems to trace a claim back to a record.</p><span class="text-link">Open field manual →</span></a></div></div></section>
++<section><div class="container"><div class="section-head"><div><span class="eyebrow">Verification</span><h2>Know what the evidence can—and cannot—say.</h2></div></div><div class="grid cols-2"><a class="guide-card" href="record-builder.html?guide=verify-a-claim"><span class="route-icon">05</span><span class="card-tag">Verification</span><h3>How to verify a claim</h3><p>Separate a statement from the evidence offered for it, then work backward to the original record.</p><span class="text-link">Open field manual →</span></a><div class="truth-card"><span class="eyebrow">Truth Standard</span><h3>Label the record as you go.</h3><p>Use FACT, LAW, CLAIM, QUESTION, INFERENCE, and UNKNOWN to keep evidence separate from interpretation.</p><a class="text-link" href="record-builder.html">See it inside the Builder →</a></div></div></div></section>
++<section class="cta-band"><div class="container"><span class="docket on-dark">Next step</span><h2>Do not leave your research in scattered notes.</h2><p>Open a record, add the question you are asking, and attach the first source you find.</p><a href="record-builder.html" class="btn">Start a record →</a></div></section></main>
++<footer class="site-footer"><div class="container footer-bottom"><span>© 2026 The Citizen's Record. Educational use—not legal advice.</span><span><a href="about.html">Independent · Nonpartisan · Primary sources</a></span></div></footer><script src="main.js"></script></body></html>
+diff --git a/updates.html b/updates.html
+index 7489ca1..0c23baf 100644
+--- a/updates.html
++++ b/updates.html
+@@ -5,14 +5,14 @@
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Daily Log | The Citizen's Record</title>
+ <meta name="description" content="The daily update log for The Citizens Record.">
+-<link rel="stylesheet" href="css/style.css">
++<link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+ 
+ <header class="site-header">
+   <div class="container nav-row">
+     <a href="index.html" class="brand">
+-      <img src="assets/logo.svg" alt="">
++      <img src="logo.svg" alt="">
+       <span class="brand-text">The Citizen's Record<small>Evidence Before Opinion</small></span>
+     </a>
+     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+@@ -49,7 +49,7 @@
+   <div class="container footer-grid">
+     <div>
+       <div class="brand" style="margin-bottom:14px;">
+-        <img src="assets/logo.svg" alt="" style="width:30px;height:30px;">
++        <img src="logo.svg" alt="" style="width:30px;height:30px;">
+         <span class="brand-text">The Citizen's Record</span>
+       </div>
+       <p class="small" style="max-width:280px;">Civic education through primary sources — constitutional rights, legislation, court decisions, and public records, explained plainly.</p>
+@@ -91,8 +91,8 @@
+   </div>
+ </footer>
+ 
+-<script src="data/posts.js"></script>
+-<script src="js/main.js"></script>
++<script src="posts.js"></script>
++<script src="main.js"></script>
+ 
+ </body>
+ </html>
+-- 
+2.43.0
+
