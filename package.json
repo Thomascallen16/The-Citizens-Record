@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node --test tests/site.test.mjs",
     "validate": "node scripts/validate-site.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
     "check": "npm run validate && npm test"
   },
   "engines": {
