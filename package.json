@@ -1,0 +1,14 @@
+{
+  "name": "the-citizens-record",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static source-first civic education site with automated structural validation.",
+  "scripts": {
+    "test": "node --test tests/site.test.mjs",
+    "validate": "node scripts/validate-site.mjs",
+    "check": "npm run validate && npm test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
