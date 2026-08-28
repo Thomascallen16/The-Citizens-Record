@@ -1,65 +1,86 @@
-# Edit This Site First
+# The Citizen's Record — Public Civic Portal
+
+**Evidence Before Opinion.**
+
+The Citizen's Record is the public, static civic portal of the Accountability ecosystem. It organizes primary-source material, civic education, public records, legislation, court decisions, and practical citizen tools in plain language.
 
 ## Live website
-https://YOUR-SITE-URL.example
 
-## How to make a normal update
-1. Open the page folder you want to change.
-2. Open that page's `index.html`.
-3. Click the pencil icon.
-4. Edit the words, links, or clearly marked page content.
-5. Click “Commit changes.”
-6. Wait for deployment, then refresh the live site.
+https://thomascallen16.github.io/The-Citizens-Record/
 
-## Common edits
+## Editing the site
 
-| I want to change | Open this |
+The public site is intentionally simple: its pages are ordinary HTML, with shared CSS and JavaScript.
+
+1. Open the page you want to change.
+2. Click the pencil icon on GitHub.
+3. Edit the page content or link.
+4. Commit the change to `main`.
+5. Static Site CI validates the change.
+6. After validation succeeds, GitHub Pages deploys the site.
+
+### Common files
+
+| Purpose | File |
 |---|---|
-| Home page text | `index/index.html` |
-| About page text | `about/index.html` |
-| Contact details | `contact/index.html` |
-| Resource links | `resources/index.html` |
-| Website colors/fonts | `assets/css/site.css` |
-| Header/menu on all pages | `components/header.html` |
-| Footer on all pages | `components/footer.html` |
-| Photos | `assets/images/` |
-| Documents | `assets/documents/` |
+| Home | `index.html` |
+| The Record | `the-record.html` |
+| Read the Record | `read-the-record.html` |
+| Learn | `learn.html` |
+| Citizen Toolkit | `toolkit.html` |
+| About / standards | `about.html` |
+| Contact | `contact.html` |
+| Daily Log | `updates.html` |
+| Daily Log content | `posts.js` |
+| Shared behavior | `main.js` |
+| Shared styling | `style.css` |
+| Site validation | `scripts/validate-site.mjs` |
+| Page build | `scripts/build-pages.mjs` |
+| Tests | `tests/site.test.mjs` |
 
-## Page structure
+## Site identity
 
-Use one folder per page:
+The public experience should remain editorial, source-first, independent, nonpartisan, and useful without an account.
 
-- `index/index.html` — Home
-- `about/index.html` — About
-- `contact/index.html` — Contact
-- `resources/index.html` — Resources
+Core principles:
 
-Keep shared styling in one place:
+- **Evidence Before Opinion** — show the document first; label analysis as analysis.
+- **Primary Sources Over Headlines** — trace claims to bills, rulings, filings, transcripts, and official records.
+- **Politically Independent** — the site does not endorse candidates or parties.
+- **Verification over trust** — give readers enough source material to check important claims themselves.
 
-- `assets/css/site.css`
+## Architecture
 
-Keep media in one place:
+The ecosystem is intentionally separated into layers:
 
-- `assets/images/`
-- `assets/documents/`
+- **`The-Citizens-Record`** — public static Civic Portal.
+- **`citizens-record`** — full-stack Accountability Platform / future Record Workspace.
+- **`ProofFlow`** — evidence and provenance project; currently blocked pending recovery of its actual application source.
+- **`watchtower`** — consent-based privacy/exposure intelligence project.
+- **`docs`** — ecosystem documentation.
+- **`The-Citizen-Main-File`** — preserved historical source/design archive.
 
-Every page should contain clear comments showing the safe area to edit. For example:
+Do not turn this public portal into the full-stack application. The public site should remain fast, account-free, and independently useful.
 
-```html
-<!-- START: ABOUT PAGE MAIN CONTENT -->
-<!-- Edit the text below. Do not change the navigation above. -->
+## Quality checks
 
-<h1>About</h1>
-<p>Replace this paragraph with your updated text.</p>
+Run locally with Node.js 20+:
 
-<!-- END: ABOUT PAGE MAIN CONTENT -->
+```bash
+npm run validate
+npm test
+npm run check
+npm run build:pages
 ```
 
-## Do not edit without a backup
+GitHub Actions runs validation and tests on pushes and pull requests to `main`. A successful validation is required before the Pages deployment workflow proceeds.
 
-- `.github/workflows/`
-- Deployment settings
-- `package.json`
-- Configuration or secrets files
+## Safety and maintenance
 
-If you are unsure whether a file controls deployment, configuration, or application behavior, do not change it until it has been reviewed.
+Do not commit passwords, API keys, private evidence, authentication tokens, or other secrets.
+
+Do not delete historical repositories or source material merely because they are no longer production. Archive or clearly document obsolete material first.
+
+The production standard is:
+
+**Clean → Validated → Deployed → Verified Live → Maintainable.**
