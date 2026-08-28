@@ -10,9 +10,18 @@ test('required source, deployment, and reusable-skill files are present', () => 
   }
 });
 
-test('homepage exposes the evidence-workbench method and primary activation path', () => {
+test('homepage exposes the Citizen\'s Record editorial identity', () => {
   const homepage = read('index.html');
-  for (const fragment of ['Start with a <em>question.</em>', 'Question</h3>', 'Source</h3>', 'Evidence</h3>', 'Finding</h3>', 'Unknown</h3>', 'record-builder.html']) {
+  for (const fragment of [
+    'The Law Belongs to <em>the People</em>.',
+    'Evidence Before Opinion',
+    'Primary Sources Over Headlines',
+    'Politically Independent',
+    "The Citizen's Forensics",
+    'Featured Legislation',
+    'Latest Court Cases',
+    'Daily Log'
+  ]) {
     assert.ok(homepage.includes(fragment), `homepage should include ${fragment}`);
   }
 });
