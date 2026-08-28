@@ -1,60 +1,65 @@
-# The Citizen's Record — Permanent Civic Portal
+# Edit This Site First
 
-The Citizen's Record is the **Permanent Civic Portal** of the Accountability Ecosystem: a civic education and source-navigation project, not a news outlet, advocacy organization, or legal-advice service.
+## Live website
+https://YOUR-SITE-URL.example
 
-## Purpose
+## How to make a normal update
+1. Open the page folder you want to change.
+2. Open that page's `index.html`.
+3. Click the pencil icon.
+4. Edit the words, links, or clearly marked page content.
+5. Click “Commit changes.”
+6. Wait for deployment, then refresh the live site.
 
-**FIND → READ → VERIFY → GO TO THE SOURCE.**
+## Common edits
 
-The portal is intentionally public, static, and useful without an account. It organizes pathways to official government sources, courts, rules, forms, public records, public defenders, legal aid, and other legitimate civic resources.
+| I want to change | Open this |
+|---|---|
+| Home page text | `index/index.html` |
+| About page text | `about/index.html` |
+| Contact details | `contact/index.html` |
+| Resource links | `resources/index.html` |
+| Website colors/fonts | `assets/css/site.css` |
+| Header/menu on all pages | `components/header.html` |
+| Footer on all pages | `components/footer.html` |
+| Photos | `assets/images/` |
+| Documents | `assets/documents/` |
 
-The portal is deliberately not a case-management application. It does not require Stripe, user accounts, or the interactive platform database.
+## Page structure
 
-## Accountability principle
+Use one folder per page:
 
-> **Don't ask people to trust the system. Give them the sources and the means to verify.**
+- `index/index.html` — Home
+- `about/index.html` — About
+- `contact/index.html` — Contact
+- `resources/index.html` — Resources
 
-The site distinguishes source material from interpretation and points visitors toward primary/official sources wherever practical.
+Keep shared styling in one place:
 
-## Two-site architecture
+- `assets/css/site.css`
 
-The ecosystem has two user-facing products:
+Keep media in one place:
 
-1. **The Citizen's Record** — this permanent public/static portal.
-2. **The Record Workspace** — the separate interactive Accountability Platform in `Thomascallen16/citizens-record`.
+- `assets/images/`
+- `assets/documents/`
 
-The Workspace is the destination for authenticated record-building and application functionality such as evidence management, provenance, verification, chronology, authority mapping, records requests, exports, and related tools. Supporting repositories such as `ProofFlow` and `watchtower` are application/source components, not additional public portals.
+Every page should contain clear comments showing the safe area to edit. For example:
 
-The portal must remain useful even when the interactive platform is unavailable.
+```html
+<!-- START: ABOUT PAGE MAIN CONTENT -->
+<!-- Edit the text below. Do not change the navigation above. -->
 
-## Repository role
+<h1>About</h1>
+<p>Replace this paragraph with your updated text.</p>
 
-This repository is the canonical public/static Citizen's Record workbench and deployment source. The separate `citizens-record` repository is the canonical full-stack application source. `The-Citizen-Main-File` is preserved as a historical source archive and is not production.
-
-The legacy static `record-builder.html` remains source/history in this repository; it is **not** the canonical interactive Workspace. The canonical Workspace destination must only be published once its application URL has been verified.
-
-## Quality checks
-
-The repository includes dependency-free structural validation and Node-native tests for the source-first civic-workbench experience.
-
-```bash
-npm run validate
-npm test
-npm run check
+<!-- END: ABOUT PAGE MAIN CONTENT -->
 ```
 
-GitHub Actions runs the validation on pull requests to `main`, pushes to `main`, and manual workflow dispatches.
+## Do not edit without a backup
 
-## Deployment
+- `.github/workflows/`
+- Deployment settings
+- `package.json`
+- Configuration or secrets files
 
-The static production assets are staged with:
-
-```bash
-npm run build:pages
-```
-
-After Static Site CI passes for `main`, the Deploy GitHub Pages workflow deploys the staged `dist/` assets to GitHub Pages. The deployment workflow can also be run manually from the repository's Actions tab.
-
-The deployment contains public website assets only and intentionally excludes deployment archives, reusable skill packages, tests, and repository documentation.
-
-A successful workflow is not treated as proof of live browser availability. Deployment state is tracked separately as **Configured → Deployed → Verified Live**.
+If you are unsure whether a file controls deployment, configuration, or application behavior, do not change it until it has been reviewed.
