@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   validate:
-    name: Validate static civic-workbench site
+    name: Validate The Citizen's Record site
     runs-on: ubuntu-latest
     steps:
       - name: Check out source
@@ -26,7 +26,7 @@ jobs:
           package-manager-cache: false
       - name: Verify repository whitespace
         run: git show --check --format= HEAD
-      - name: Validate static-site structure
+      - name: Validate site structure
         run: npm run validate
       - name: Run automated tests
         run: npm test
