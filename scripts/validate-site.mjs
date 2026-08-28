@@ -16,14 +16,14 @@ export const requiredFiles = [
 
 export const requiredContent = {
   'index.html': [
-    'Start with a <em>question.</em>',
-    'Question</h3>',
-    'Source</h3>',
-    'Evidence</h3>',
-    'Finding</h3>',
-    'Unknown</h3>',
-    'Start a record →',
-    'Truth Standard'
+    'The Law Belongs to <em>the People</em>.',
+    'Evidence Before Opinion',
+    'Primary Sources Over Headlines',
+    'Politically Independent',
+    "The Citizen's Forensics",
+    'Featured Legislation',
+    'Latest Court Cases',
+    'Daily Log'
   ],
   'toolkit.html': [
     'Learn how to investigate.',
