@@ -40,6 +40,43 @@ document.addEventListener('DOMContentLoaded', () => {
     renderUpdateLog(logEl, window.CR_POSTS);
   }
 
+  // Record Builder: preserve a lightweight draft locally and support guide-aware onboarding
+  const recordForm = document.getElementById('record-form');
+  const recordSummary = document.getElementById('record-summary');
+  if (recordForm) {
+    const saved = JSON.parse(localStorage.getItem('cr-record-draft') || '{}');
+    const questionInput = document.getElementById('record-question');
+    const sourceInput = document.getElementById('record-source');
+    if (saved.question && questionInput) questionInput.value = saved.question;
+    if (saved.source && sourceInput) sourceInput.value = saved.source;
+    const guide = new URLSearchParams(location.search).get('guide');
+    const guideNames = {
+      'find-government-documents':'Finding government documents',
+      'read-a-docket':'How to read a docket',
+      'public-records-request':'Making a public-records request',
+      'follow-public-money':'Following public money',
+      'verify-a-claim':'How to verify a claim'
+    };
+    if (guide && guideNames[guide] && questionInput && !questionInput.value) questionInput.placeholder = `What do you want to understand about ${guideNames[guide].toLowerCase()}?`;
+    recordForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const draft = { question: questionInput.value.trim(), source: sourceInput.value.trim(), createdAt: new Date().toISOString() };
+      localStorage.setItem('cr-record-draft', JSON.stringify(draft));
+      const status = document.getElementById('builder-status');
+      if (status) status.textContent = 'Saved locally. Your first record step is complete.';
+      if (recordSummary) {
+        recordSummary.hidden = false;
+        document.getElementById('summary-question').textContent = draft.question;
+        document.getElementById('summary-source').textContent = draft.source || 'No source added yet — that is the next step.';
+      }
+      recordForm.querySelectorAll('input, textarea, button').forEach(el => el.disabled = true);
+      const progress = document.getElementById('builder-progress');
+      if (progress) progress.textContent = '02 / 04';
+      document.querySelectorAll('.builder-step').forEach((el, i) => { el.classList.toggle('active', i < 2); });
+      window.dispatchEvent(new CustomEvent('cr:record-started', { detail: draft }));
+    });
+  }
+
   // render homepage latest update strip
   const latestEl = document.getElementById('latest-update');
   if (latestEl && Array.isArray(window.CR_POSTS) && window.CR_POSTS.length) {

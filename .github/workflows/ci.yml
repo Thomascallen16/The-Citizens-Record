@@ -1,0 +1,32 @@
+name: Static Site CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: static-site-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    name: Validate The Citizen's Record site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 2
+      - name: Set up Node.js
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Verify repository whitespace
+        run: git show --check --format= HEAD
+      - name: Validate site structure
+        run: npm run validate
+      - name: Run automated tests
+        run: npm test
