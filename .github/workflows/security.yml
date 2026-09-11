@@ -9,6 +9,8 @@ on:
 permissions:
   contents: read
 
+cache-mode: none
+
 jobs:
   gitleaks:
     name: Scan for committed secrets
